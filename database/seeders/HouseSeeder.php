@@ -18,7 +18,6 @@ class HouseSeeder extends Seeder
         DB::table('houses')->insert([
             'name' => Str::random(10),
             'description' => Str::random(112),
-            'image' => "1636375995.jpg",
             'price' => time(),
             'ft_price' => time(),
             'address' => Str::random(10)."street",

@@ -14,8 +14,7 @@ class House extends Model
 
     protected $fillable = [
         'name',
-        'description' ,
-        'image' ,
+        'description'   ,
         'price',
         'ft_price' ,
         'address' ,
@@ -30,5 +29,11 @@ class House extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Houses_images::class);
+    }
+
 
 }

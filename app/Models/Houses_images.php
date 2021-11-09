@@ -9,8 +9,12 @@ class Houses_images extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'filename'
+    ];
+
     public function house(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo('App\House');
+        return $this->belongsTo(House::class);
     }
 }

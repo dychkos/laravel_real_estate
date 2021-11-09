@@ -13,6 +13,7 @@
 <body>
 <header class="header">
     <div class="container">
+
         <div class="header__logo logo">
             <a href="/"> <img src="img/real_logo.svg" alt="logo"></a>
         </div>
@@ -177,11 +178,12 @@
             <div class="listings__cards cards">
                 <div class="cards__body row row-cols-1 row-cols-sm-2 row-cols-md-3">
                     @foreach($houses as $house)
+
                         <div class="col">
                             <a href={{{ url('houses/'.$house->id) }}}>
                                 <div class="card ">
                                     <div class="card__image">
-                                        <img src="{{"\uploads\houses\\" . $house->image}}" alt="House Item">
+                                        <img src="{{$house->images->first()->filename}}" alt="House Item">
                                     </div>
                                     <div class="card__title">
                                         <h4>

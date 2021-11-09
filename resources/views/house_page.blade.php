@@ -67,45 +67,18 @@
                         <div class="house__preview">
                             <div class="row">
                                 <div  class="house__photo house__photo_big">
-                                    <img id="house-preview" src="./../img/room1.jpg" alt="House Photo">
+                                    <img id="house-preview" src="{{"../".$house->images->first()->filename}}" alt="House Photo">
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col">
-                                    <div class="house__photo house__photo_small">
-                                        <img src="./../img/room1.jpg" data-photo alt="House Photo">
+                                @foreach($house->images as $img)
+                                    <div class="col">
+                                        <div class="house__photo house__photo_small">
+                                            <img src={{"../".$img->filename}} data-photo alt="House Photo">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <div class="house__photo house__photo_small">
-                                        <img src="./../img/room2.jpg" data-photo alt="House Photo">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="house__photo house__photo_small">
-                                        <img src="./../img/room3.jpg" data-photo alt="House Photo">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="house__photo house__photo_small" >
-                                        <img src="./../img/room1.jpg" data-photo alt="House Photo">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="house__photo house__photo_small">
-                                        <img src="./../img/room2.jpg" data-photo  alt="House Photo">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="house__photo house__photo_small" >
-                                        <img src="./../img/room3.jpg" data-photo alt="House Photo">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="house__photo house__photo_small" >
-                                        <img src="./../img/poperty_house1.png" data-photo alt="House Photo">
-                                    </div>
-                                </div>
+                                @endforeach
+
                             </div>
                         </div>
                         <div class="house__details card">

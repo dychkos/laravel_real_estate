@@ -16,23 +16,27 @@ class HouseService
     }
 
 
-    public function saveHouseData($data){
+    /**
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function saveHouseData($house){
 
-        $validator = validator::make($data,[
-            'name' => "required",
-            'description' => "required",
-            'image' => "required",
-            'price' => "required",
-            'ft_price' => "required",
-            'address' => "required",
-            'founded_year' => "required"
-        ]);
+        $validated = validator::make($house,[
+            'name' => ["required","string","max:25"],
+            'description' =>["required","string"],
+            'images' => ["required","array","min:3","max:7"],
+            'price' => ["required","integer"],
+            'ft_price' => ["required","integer"],
+            'address' => ["required","string"],
+            'bedrooms_count' => ["nullable","integer"],
+            'showers_count' => ["nullable","integer"],
+            'garage_count' => ["nullable","integer"],
+            'floors_count' => ["nullable","integer"],
+            'founded_year' => ["required","integer"]
+        ])->validate();
 
-        if($validator->fails()){
-            throw new \InvalidArgumentException($validator->errors()->first());
-        }
 
-        return $this->houseRepository->save($data);
+        return $this->houseRepository->save($validated);
     }
 
 }

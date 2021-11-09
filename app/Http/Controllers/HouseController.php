@@ -28,18 +28,36 @@ class HouseController extends Controller
 
     public function store(HouseService $houseService,Request $request){
 
-        if($request->hasfile('photo_previews'))
-        {
-            $file = $request->file('photo_previews');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
-            $file->move('uploads/houses/', $filename);
+        $houseImages = array();
+
+
+        if($files = $request->file('image')){
+            foreach($files as $file){
+                $image_name = md5(rand(1000,10000));
+                $ext = strtolower($file->getClientOriginalExtension());
+                $image_full_name = $image_name.'.'.$ext;
+                $uploade_path = "uploads/houses/";
+                $image_url = $uploade_path.$image_full_name;
+                $file->move($uploade_path,$image_full_name);
+                array_push($houseImages,["filename" => $image_url]);
+                //$image[] = $image_url;
+            }
         }
+
+
+
+//        if($request->hasfile('photo_previews'))
+//        {
+//            $file = $request->file('photo_previews');
+//            $extension = $file->getClientOriginalExtension();
+//            $filename = time().'.'.$extension;
+//            $file->move('uploads/houses/', $filename);
+//        }
 
         $createdHouse = array(
             'name' => $request->input('house_title'),
             'description' => $request->input('description'),
-            'image' => $filename ?? "",
+            'images' => $houseImages ?? [],
             'price' => $request->input('price'),
             'ft_price' => $request->input('ft_price'),
             'address' => $request->input('address'),
@@ -51,18 +69,10 @@ class HouseController extends Controller
         );
 
 
+        $result = $houseService->saveHouseData($createdHouse);
 
-        try {
-            $result = $houseService->saveHouseData($createdHouse);
-
-        }catch (\Exception $e){
-            $result = [
-                'status'=>500,
-                'error'=>$e->getMessage()
-            ];
-        }
-
-        return \response()->json($result);
+        return redirect("houses/" . $result->id);
+        //return \response()->json($result);
 
     }
 }
