@@ -21,7 +21,7 @@ class HouseService
      */
     public function saveHouseData($house){
 
-        $validated = validator::make($house,[
+        $validated = Validator::make($house,[
             'name' => ["required","string","max:25"],
             'description' =>["required","string"],
             'images' => ["required","array","min:3","max:7"],

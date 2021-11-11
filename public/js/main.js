@@ -100,6 +100,8 @@ const photoPreviews = document.querySelectorAll("[data-photo]");
 const photo = document.querySelector("#house-preview");
 const swiperNode = document.querySelector(".sim-swiper");
 
+
+
 if(photoPreviews && photo){
     let photoPreview = new PhotoPreview (photo,photoPreviews);
 }
@@ -116,6 +118,24 @@ if(swiperNode){
 
 }
 
+
+
 dropdowns.forEach(dropdown=>{
     let select = new Select(dropdown);
 })
+
+$(document).ready(function () {
+    "use strict";
+    $("#file").on("change", function (e) {
+        var files = $(this)[0].files;
+        if (files.length >= 2) {
+            $(".file_label").text(files.length + " Files Ready To Upload");
+        } else {
+            var fileName = e.target.value.split("\\").pop();
+            $(".file_label").text(fileName);
+        }
+    });
+});
+
+
+

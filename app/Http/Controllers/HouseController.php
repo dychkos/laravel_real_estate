@@ -30,7 +30,6 @@ class HouseController extends Controller
 
         $houseImages = array();
 
-
         if($files = $request->file('image')){
             foreach($files as $file){
                 $image_name = md5(rand(1000,10000));
@@ -43,9 +42,6 @@ class HouseController extends Controller
                 //$image[] = $image_url;
             }
         }
-
-
-
 //        if($request->hasfile('photo_previews'))
 //        {
 //            $file = $request->file('photo_previews');
@@ -73,6 +69,5 @@ class HouseController extends Controller
 
         return redirect("houses/" . $result->id);
         //return \response()->json($result);
-
     }
 }

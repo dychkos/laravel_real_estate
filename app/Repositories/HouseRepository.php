@@ -23,7 +23,6 @@ class HouseRepository
         $house->description=$data['description'];
         $house->price=$data['price'];
 
-
         $house->ft_price=$data['ft_price'];
         $house->address=$data['address'];
         $house->bedrooms_count=$data['bedrooms_count'];
@@ -38,7 +37,6 @@ class HouseRepository
         $house->images()->createMany($data['images']);
 
         $house->fresh();
-
 
         return $house ;
 
