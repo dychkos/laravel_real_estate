@@ -9,11 +9,17 @@
                     <form action="{{route("login.store")}}" method="POST" class="login-form" >
                         @csrf
                         <div class="login-form__item">
+                            @error("email")
+                            <div class="validation-fail">{{$message}}</div>
+                            @enderror
                             <label for="email">Email</label>
-                            <input type="email" name="email" id="email">
+                            <input type="email" value="{{old("email")}}" name="email" id="email">
                         </div>
 
                         <div class="login-form__item">
+                            @error("password")
+                            <div class="validation-fail">{{$message}}</div>
+                            @enderror
                             <label for="password">Password</label>
                             <input type="password" name="password" id="password">
                         </div>

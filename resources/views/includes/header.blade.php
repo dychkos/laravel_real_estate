@@ -4,15 +4,17 @@
             <a href="/"> <img src="../img/real_logo.svg" alt="logo"></a>
         </div>
         <ul class="header__nav nav">
-            <li class="nav__item"><a href="{{route("house.add")}}">Add house</a></li>
             <li class="nav__item"><a href="#">Nav link</a></li>
             <li class="nav__item"><a href="#">Nav link</a></li>
             <li class="nav__item"><a href="#">Nav link</a></li>
+            @if(\Illuminate\Support\Facades\Auth::check())
+                <li class="nav__item"><a href="{{route("login.logout")}}">Logout</a></li>
+            @endif
             <li class="nav__item">
                 <button class="btn btn-yellow" >
-                    <a href={{ route('login')}}>
+                    <a href={{ \Illuminate\Support\Facades\Auth::check()?route("user.houses"):route('login')}}>
                         <div class="text-arrow">
-                            <span class="text-arrow__item">Work with us</span>
+                            <span class="text-arrow__item">{{\Illuminate\Support\Facades\Auth::check() ? "My sales":"Work with us"}}</span>
                             <img src="../img/arrow_white.svg" alt="Arrow Next">
                         </div>
                     </a>

@@ -13,17 +13,17 @@ class HouseController extends Controller
 {
     public function index(){
         $houses = \App\Models\House::all();
-        return view('houses',compact('houses'));
+        return view('houses.index',compact('houses'));
     }
 
     public function showOne($house_id){
         $house = \App\Models\House::find($house_id);
-        return view('house_page',compact('house'));
+        return view('houses.show',compact('house'));
     }
 
     public function addShow(Request $request){
         Session::put('requestReferrer', URL::previous());
-        return view('house_add');
+        return view('user.houses.create');
     }
 
     public function store(HouseService $houseService,Request $request){
@@ -67,7 +67,7 @@ class HouseController extends Controller
 
         $result = $houseService->saveHouseData($createdHouse);
 
-        return redirect("houses/" . $result->id);
+        return redirect()->route("house.show",["id"=>$result->id]);
         //return \response()->json($result);
     }
 }
