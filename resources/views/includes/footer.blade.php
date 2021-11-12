@@ -10,7 +10,7 @@
                 <button class="btn btn-yellow">
                     <div class="text-arrow">
                         <span class="text-arrow__item">Work with us</span>
-                        <img src="../img/arrow_white.svg" alt="Arrow Next">
+                        <img src="{{asset('img/arrow_white.svg')}}" alt="Arrow Next">
                     </div>
                 </button>
             </div>
@@ -19,7 +19,7 @@
             <div class="footer__col col">
                 <div class="footer__fix-size">
                     <div class="footer__logo logo">
-                        <img src="../img/real_logo.svg" alt="logo">
+                        <img src="{{asset('img/real_logo.svg')}}" alt="logo">
                     </div>
                     <div class="footer__social social">
                         <a class="social" href="#">

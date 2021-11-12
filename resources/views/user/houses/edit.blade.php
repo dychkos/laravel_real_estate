@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-6 mb-3">
                             <label for="house_title">House title</label>
-                            <input type="text" class="form-control" id="house_title" value="{{old("house_title")}}" name="house_title">
+                            <input type="text" class="form-control" id="house_title" value="{{$house->name}}" name="house_title">
                             @error("name")
                             <div class="validation-fail">{{$message}}</div>
                             @enderror
@@ -107,13 +107,12 @@
                     <button class="btn btn-yellow" type="submit">
                         <div class="text-arrow">
                             <span class="text-arrow__item">Next</span>
-                            <img src="{{asset('img/arrow_white.svg')}}" alt="Arrow Next">
+                            <img src="{{asset("arrow_white.svg")}}" alt="Arrow Next">
                         </div>
                     </button>
                 </form>
             </div>
         </div>
-
     </div>
 
 

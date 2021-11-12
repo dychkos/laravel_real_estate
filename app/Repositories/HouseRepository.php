@@ -42,4 +42,10 @@ class HouseRepository
 
     }
 
+    public function show($house_id){
+        $house = new $this->house;
+
+        return $house->find($house_id);
+    }
+
 }

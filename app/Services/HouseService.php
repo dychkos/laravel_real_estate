@@ -39,4 +39,8 @@ class HouseService
         return $this->houseRepository->save($validated);
     }
 
+    public function show($house_id){
+        return $this->houseRepository->show($house_id);
+    }
+
 }

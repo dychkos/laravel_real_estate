@@ -67,7 +67,54 @@ class HouseController extends Controller
 
         $result = $houseService->saveHouseData($createdHouse);
 
+        return redirect()->route("houses.show",["id"=>$result->id]);
+        //return \response()->json($result);
+    }
+
+
+    public function edit(HouseService $houseService,Request $request,$house_id){
+        $house = $houseService->show($house_id);
+
+        return view("user.houses.edit",compact("house"));
+
+    }
+
+    public function update(HouseService $houseService,Request $request){
+
+        $houseImages = array();
+
+        if($files = $request->file('image')){
+            foreach($files as $file){
+                $image_name = md5(rand(1000,10000));
+                $ext = strtolower($file->getClientOriginalExtension());
+                $image_full_name = $image_name.'.'.$ext;
+                $uploade_path = "uploads/houses/";
+                $image_url = $uploade_path.$image_full_name;
+                $file->move($uploade_path,$image_full_name);
+                array_push($houseImages,["filename" => $image_url]);
+                //$image[] = $image_url;
+            }
+        }//
+
+        $createdHouse = array(
+            'name' => $request->input('house_title'),
+            'description' => $request->input('description'),
+            'images' => $houseImages ?? [],
+            'price' => $request->input('price'),
+            'ft_price' => $request->input('ft_price'),
+            'address' => $request->input('address'),
+            'bedrooms_count' =>  $request->input('bedrooms_count'),
+            'showers_count' =>  $request->input('showers_count'),
+            'floors_count' =>  $request->input('floors_count'),
+            'garage_count' =>  $request->input('garage_count'),
+            'founded_year' => $request->input("founded_year")
+        );
+
+
+        $result = $houseService->saveHouseData($createdHouse);
+
         return redirect()->route("house.show",["id"=>$result->id]);
         //return \response()->json($result);
     }
+
 }

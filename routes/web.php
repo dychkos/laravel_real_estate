@@ -33,10 +33,11 @@ Route::middleware("guest")->group(function(){
 
 Route::get('houses/{id}',[HouseController::class,'showOne'])->where('id',"[0-9]+")->name("houses.show");
 Route::middleware("auth")->group(function(){
-    Route::get('houses/add_form',[HouseController::class,'addShow'])->middleware("auth")->name("user.houses.create");
-    Route::post('houses/add_form',[HouseController::class,'store']);
+    Route::get('user/houses/create',[HouseController::class,'addShow'])->middleware("auth")->name("user.houses.create");
+    Route::post('user/houses/create',[HouseController::class,'store'])->name("user.houses.store");
 
-    Route::get('houses/user',[UserController::class,'index'])->name("user.houses");
+    Route::get('user/houses',[UserController::class,'index'])->name("user.houses");
+    Route::get('user/houses/{id}/edit',[HouseController::class,'edit'])->name("user.houses.edit");
 });
 
 

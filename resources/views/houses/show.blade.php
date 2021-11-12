@@ -51,31 +51,31 @@
                             </div>
                             <div class="card__footer row">
                                 <div class="card__footer-item col">
-                                    <img src="./../img/Bed.svg" alt="Bed">
+                                    <img src="{{asset("img/Bed.svg")}}" alt="Bed">
                                     <span class="card__footer-info">
                                 {{$house->bedrooms_count}}
                 </span>
                                 </div>
                                 <div class="card__footer-item col ">
-                                    <img src="./../img/Shower.svg" alt="Shower">
+                                    <img src="{{asset("img/Shower.svg")}}" alt="Shower">
                                     <span class="card__footer-info">
                                 {{$house->showers_count}}
                 </span>
                                 </div>
                                 <div class="card__footer-item col">
-                                    <img src="./../img/Size.svg" alt="Size">
+                                    <img src="{{asset("img/Size.svg")}}" alt="Size">
                                     <span class="card__footer-info">
                                 {{$house->floors_count}}
                 </span>
                                 </div>
                                 <div class="card__footer-item col">
-                                    <img src="./../img/Garage.svg" alt="Garage">
+                                    <img src="{{asset("img/Garage.svg")}}" alt="Garage">
                                     <span class="card__footer-info">
                                 {{$house->garage_count}}
                 </span>
                                 </div>
                                 <div class="card__footer-item col ">
-                                    <img src="./../img/Date.svg" alt="Date">
+                                    <img src="{{asset("img/Date.svg")}}" alt="Date">
                                     <span class="card__footer-info">
                                 {{$house->founded_year}}
                 </span>
@@ -98,91 +98,91 @@
                                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 ">
                                     <div class="feature">
                                         <div class="feature__icon">
-                                            <img src="./../img/check.svg" alt="Feature">
+                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
                                         </div>
                                         <span class="feature__item">Air Conditioning</span>
                                     </div>
                                     <div class="feature">
                                         <div class="feature__icon">
-                                            <img src="./../img/check.svg" alt="Feature">
+                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
                                         </div>
                                         <span class="feature__item">Air Conditioning</span>
                                     </div>
                                     <div class="feature">
                                         <div class="feature__icon">
-                                            <img src="./../img/check.svg" alt="Feature">
+                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
                                         </div>
                                         <span class="feature__item">Air Conditioning</span>
                                     </div>
                                     <div class="feature">
                                         <div class="feature__icon">
-                                            <img src="./../img/check.svg" alt="Feature">
+                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
                                         </div>
                                         <span class="feature__item">Air Conditioning</span>
                                     </div>
                                     <div class="feature">
                                         <div class="feature__icon">
-                                            <img src="./../img/check.svg" alt="Feature">
+                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
                                         </div>
                                         <span class="feature__item">Air Conditioning</span>
                                     </div>
                                     <div class="feature">
                                         <div class="feature__icon">
-                                            <img src="./../img/check.svg" alt="Feature">
+                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
                                         </div>
                                         <span class="feature__item">Air Conditioning</span>
                                     </div>
                                     <div class="feature">
                                         <div class="feature__icon">
-                                            <img src="./../img/check.svg" alt="Feature">
+                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
                                         </div>
                                         <span class="feature__item">Air Conditioning</span>
                                     </div>
                                     <div class="feature">
                                         <div class="feature__icon">
-                                            <img src="./../img/check.svg" alt="Feature">
+                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
                                         </div>
                                         <span class="feature__item">Air Conditioning</span>
                                     </div>
                                     <div class="feature">
                                         <div class="feature__icon">
-                                            <img src="./../img/check.svg" alt="Feature">
+                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
                                         </div>
                                         <span class="feature__item">Air Conditioning</span>
                                     </div>
                                     <div class="feature">
                                         <div class="feature__icon">
-                                            <img src="./../img/check.svg" alt="Feature">
+                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
                                         </div>
                                         <span class="feature__item">Air Conditioning</span>
                                     </div>
                                     <div class="feature">
                                         <div class="feature__icon">
-                                            <img src="./../img/check.svg" alt="Feature">
+                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
                                         </div>
                                         <span class="feature__item">Air Conditioning</span>
                                     </div>
                                     <div class="feature">
                                         <div class="feature__icon">
-                                            <img src="./../img/check.svg" alt="Feature">
+                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
                                         </div>
                                         <span class="feature__item">Air Conditioning</span>
                                     </div>
                                     <div class="feature">
                                         <div class="feature__icon">
-                                            <img src="./../img/check.svg" alt="Feature">
+                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
                                         </div>
                                         <span class="feature__item">Air Conditioning</span>
                                     </div>
                                     <div class="feature">
                                         <div class="feature__icon">
-                                            <img src="./../img/check.svg" alt="Feature">
+                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
                                         </div>
                                         <span class="feature__item">Air Conditioning</span>
                                     </div>
                                     <div class="feature">
                                         <div class="feature__icon">
-                                            <img src="./../img/check.svg" alt="Feature">
+                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
                                         </div>
                                         <span class="feature__item">Air Conditioning</span>
                                     </div>
@@ -222,7 +222,7 @@
                             <button type="submit" class="btn btn-black full-width">
                                 <div class="text-arrow">
                                     <span class="text-arrow__item">Learn more</span>
-                                    <img src="./../img/arrow.svg" alt="Arrow Next">
+                                    <img src="{{asset("img/arrow.svg")}}" alt="Arrow Next">
                                 </div>
                             </button>
                         </div>
@@ -245,7 +245,7 @@
                         <div class="swiper-slide">
                             <div class="card ">
                                 <div class="card__image">
-                                    <img src="./../img/house1.png" alt="House Item">
+                                    <img src="{{asset("img/house1.png")}}" alt="House Item">
                                 </div>
                                 <div class="card__title">
                                     <h4>
@@ -254,19 +254,19 @@
                                 </div>
                                 <div class="card__footer row">
                                     <div class="card__footer-item col">
-                                        <img src="./../img/Bed.svg" alt="Bed">
+                                        <img src="{{asset("img/Bed.svg")}}" alt="Bed">
                                         <span class="card__footer-info">
                   7
                 </span>
                                     </div>
                                     <div class="card__footer-item col ">
-                                        <img src="./../img/Shower.svg" alt="Shower">
+                                        <img src="{{asset("img/Shower.svg")}}" alt="Shower">
                                         <span class="card__footer-info">
                   14
                 </span>
                                     </div>
                                     <div class="card__footer-item col">
-                                        <img src="./../img/Size.svg" alt="Size">
+                                        <img src="{{asset("img/Size.svg")}}" alt="Size">
                                         <span class="card__footer-info">
                   4
                 </span>
@@ -277,7 +277,7 @@
                         <div class="swiper-slide">
                             <div class="card ">
                                 <div class="card__image">
-                                    <img src="./../img/house_bg.png" alt="House Item">
+                                    <img src="{{asset("img/house_bg.png")}}" alt="House Item">
                                 </div>
                                 <div class="card__title">
                                     <h4>
@@ -286,19 +286,19 @@
                                 </div>
                                 <div class="card__footer row">
                                     <div class="card__footer-item col">
-                                        <img src="./../img/Bed.svg" alt="Bed">
+                                        <img src="{{asset("img/Bed.svg")}}" alt="Bed">
                                         <span class="card__footer-info">
                   7
                 </span>
                                     </div>
                                     <div class="card__footer-item col ">
-                                        <img src="./../img/Shower.svg" alt="Shower">
+                                        <img src="{{asset("img/Shower.svg")}}" alt="Shower">
                                         <span class="card__footer-info">
                   14
                 </span>
                                     </div>
                                     <div class="card__footer-item col">
-                                        <img src="./../img/Size.svg" alt="Size">
+                                        <img src="{{asset("img/Size.svg")}}" alt="Size">
                                         <span class="card__footer-info">
                   4
                 </span>
@@ -309,7 +309,7 @@
                         <div class="swiper-slide">
                             <div class="card ">
                                 <div class="card__image">
-                                    <img src="./../img/house_bg.png" alt="House Item">
+                                    <img src="{{asset("img/house_bg.png")}}" alt="House Item">
                                 </div>
                                 <div class="card__title">
                                     <h4>
@@ -318,19 +318,19 @@
                                 </div>
                                 <div class="card__footer row">
                                     <div class="card__footer-item col">
-                                        <img src="./../img/Bed.svg" alt="Bed">
+                                        <img src="{{asset("img/Bed.svg")}}" alt="Bed">
                                         <span class="card__footer-info">
                   7
                 </span>
                                     </div>
                                     <div class="card__footer-item col ">
-                                        <img src="./../img/Shower.svg" alt="Shower">
+                                        <img src="{{asset("img/Shower.svg")}}" alt="Shower">
                                         <span class="card__footer-info">
                   14
                 </span>
                                     </div>
                                     <div class="card__footer-item col">
-                                        <img src="./../img/Size.svg" alt="Size">
+                                        <img src="{{asset("img/Size.svg")}}" alt="Size">
                                         <span class="card__footer-info">
                   4
                 </span>
@@ -341,7 +341,7 @@
                         <div class="swiper-slide">
                             <div class="card ">
                                 <div class="card__image">
-                                    <img src="./../img/house1.png" alt="House Item">
+                                    <img src="{{asset("img/house1.png")}}" alt="House Item">
                                 </div>
                                 <div class="card__title">
                                     <h4>
@@ -350,19 +350,19 @@
                                 </div>
                                 <div class="card__footer row">
                                     <div class="card__footer-item col">
-                                        <img src="./../img/Bed.svg" alt="Bed">
+                                        <img src="{{asset("img/Bed.svg")}}" alt="Bed">
                                         <span class="card__footer-info">
                   7
                 </span>
                                     </div>
                                     <div class="card__footer-item col ">
-                                        <img src="./../img/Shower.svg" alt="Shower">
+                                        <img src="{{asset("img/Shower.svg")}}" alt="Shower">
                                         <span class="card__footer-info">
                   14
                 </span>
                                     </div>
                                     <div class="card__footer-item col">
-                                        <img src="./../img/Size.svg" alt="Size">
+                                        <img src="{{asset("img/Size.svg")}}" alt="Size">
                                         <span class="card__footer-info">
                   4
                 </span>
@@ -373,7 +373,7 @@
                         <div class="swiper-slide">
                             <div class="card ">
                                 <div class="card__image">
-                                    <img src="./../img/house_bg.png" alt="House Item">
+                                    <img src="{{asset("img/house_bg.png")}}" alt="House Item">
                                 </div>
                                 <div class="card__title">
                                     <h4>
@@ -382,19 +382,19 @@
                                 </div>
                                 <div class="card__footer row">
                                     <div class="card__footer-item col">
-                                        <img src="./../img/Bed.svg" alt="Bed">
+                                        <img src="{{asset("img/Bed.svg")}}" alt="Bed">
                                         <span class="card__footer-info">
                   7
                 </span>
                                     </div>
                                     <div class="card__footer-item col ">
-                                        <img src="./../img/Shower.svg" alt="Shower">
+                                        <img src="{{asset("img/Shower.svg")}}" alt="Shower">
                                         <span class="card__footer-info">
                   14
                 </span>
                                     </div>
                                     <div class="card__footer-item col">
-                                        <img src="./../img/Size.svg" alt="Size">
+                                        <img src="{{asset("img/Size.svg")}}" alt="Size">
                                         <span class="card__footer-info">
                   4
                 </span>
@@ -405,7 +405,7 @@
                         <div class="swiper-slide">
                             <div class="card ">
                                 <div class="card__image">
-                                    <img src="./../img/house1.png" alt="House Item">
+                                    <img src="{{asset("img/house1.png")}}" alt="House Item">
                                 </div>
                                 <div class="card__title">
                                     <h4>
@@ -414,19 +414,19 @@
                                 </div>
                                 <div class="card__footer row">
                                     <div class="card__footer-item col">
-                                        <img src="./../img/Bed.svg" alt="Bed">
+                                        <img src="{{asset("img/Bed.svg")}}" alt="Bed">
                                         <span class="card__footer-info">
                   7
                 </span>
                                     </div>
                                     <div class="card__footer-item col ">
-                                        <img src="./../img/Shower.svg" alt="Shower">
+                                        <img src="{{asset("img/Shower.svg")}}" alt="Shower">
                                         <span class="card__footer-info">
                   14
                 </span>
                                     </div>
                                     <div class="card__footer-item col">
-                                        <img src="./../img/Size.svg" alt="Size">
+                                        <img src="{{asset("img/Size.svg")}}" alt="Size">
                                         <span class="card__footer-info">
                   4
                 </span>
@@ -437,7 +437,7 @@
                         <div class="swiper-slide">
                             <div class="card ">
                                 <div class="card__image">
-                                    <img src="./../img/house_bg.png" alt="House Item">
+                                    <img src="{{asset("img/house_bg.png")}}" alt="House Item">
                                 </div>
                                 <div class="card__title">
                                     <h4>
@@ -446,19 +446,19 @@
                                 </div>
                                 <div class="card__footer row">
                                     <div class="card__footer-item col">
-                                        <img src="./../img/Bed.svg" alt="Bed">
+                                        <img src="{{asset("img/Bed.svg")}}" alt="Bed">
                                         <span class="card__footer-info">
                   7
                 </span>
                                     </div>
                                     <div class="card__footer-item col ">
-                                        <img src="./../img/Shower.svg" alt="Shower">
+                                        <img src="{{asset("img/Shower.svg")}}" alt="Shower">
                                         <span class="card__footer-info">
                   14
                 </span>
                                     </div>
                                     <div class="card__footer-item col">
-                                        <img src="./../img/Size.svg" alt="Size">
+                                        <img src="{{asset("img/Size.svg")}}" alt="Size">
                                         <span class="card__footer-info">
                   4
                 </span>

@@ -6,7 +6,7 @@
         <div class="banner__gradient">
         </div>
         <div class="banner__bg-image">
-            <img src="./img/house_bg.png" alt="Background" >
+            <img src="{{asset("img/house_bg.png")}}" alt="Background" >
         </div>
         <div class="banner__body">
             <div class="container">
@@ -19,7 +19,7 @@
                 <div class="banner__footer">
                     <div class="text-arrow">
                         <h6 class="text-arrow__item">See all insights</h6>
-                        <img src="./img/arrow.svg" alt="Arrow Next">
+                        <img src="{{asset("img/arrow.svg")}}" alt="Arrow Next">
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
     </section>
     <section class="promotion">
         <div class="promotion__image">
-            <img src="./img/good_hands.png" alt="Good Hands">
+            <img src="{{asset("img/good_hands.png")}}" alt="Good Hands">
         </div>
         <div class="container">
             <div class="row">
@@ -44,7 +44,7 @@
                     <button class="btn btn-black">
                         <div class="text-arrow">
                             <span class="text-arrow__item">Learn more</span>
-                            <img src="./img/arrow.svg" alt="Arrow Next">
+                            <img src="{{asset("img/arrow.svg")}}" alt="Arrow Next">
                         </div>
                     </button>
                 </div>
@@ -67,7 +67,7 @@
                             <div class="dropdown__header">
                                 <div class="dropdown__title">Looking for</div>
                                 <div class="dropdown__arrow">
-                                    <img src="./img/arrow_down.svg" alt="Arrow down">
+                                    <img src="{{asset("img/arrow_down.svg")}}" alt="Arrow down">
                                 </div>
                             </div>
                             <div class="dropdown__body">
@@ -86,7 +86,7 @@
                             <div class="dropdown__header">
                                 <div class="dropdown__title">Location</div>
                                 <div class="dropdown__arrow">
-                                    <img src="./img/arrow_down.svg" alt="Arrow down">
+                                    <img src="{{asset("img/arrow_down.svg")}}" alt="Arrow down">
                                 </div>
                             </div>
                             <div class="dropdown__body">
@@ -105,7 +105,7 @@
                             <div class="dropdown__header">
                                 <div class="dropdown__title">Property type</div>
                                 <div class="dropdown__arrow">
-                                    <img src="./img/arrow_down.svg" alt="Arrow down">
+                                    <img src="{{asset("img/arrow_down.svg")}}" alt="Arrow down">
                                 </div>
                             </div>
                             <div class="dropdown__body">
@@ -124,7 +124,7 @@
                             <div class="dropdown__header">
                                 <div class="dropdown__title">Price</div>
                                 <div class="dropdown__arrow">
-                                    <img src="./img/arrow_down.svg" alt="Arrow down">
+                                    <img src="{{asset("img/arrow_down.svg")}}" alt="Arrow down">
                                 </div>
                             </div>
                             <div class="dropdown__body">
@@ -155,19 +155,19 @@
                                     </div>
                                     <div class="card__footer row">
                                         <div class="card__footer-item col">
-                                            <img src="./img/Bed.svg" alt="Bed">
+                                            <img src="{{asset("img/Bed.svg")}}" alt="Bed">
                                             <span class="card__footer-info">
                        {{$house->bedrooms_count}}
                     </span>
                                         </div>
                                         <div class="card__footer-item col ">
-                                            <img src="./img/Shower.svg" alt="Shower">
+                                            <img src="{{asset("img/Shower.svg")}}" alt="Shower">
                                             <span class="card__footer-info">
                        {{$house->showers_count}}
                     </span>
                                         </div>
                                         <div class="card__footer-item col">
-                                            <img src="./img/Size.svg" alt="Size">
+                                            <img src="{{asset("img/Size.svg")}}" alt="Size">
                                             <span class="card__footer-info">
                        {{$house->floors_count}}
                     </span>
@@ -197,14 +197,14 @@
                     <button class="btn btn-black">
                         <div class="text-arrow">
                             <span class="text-arrow__item">Learn more</span>
-                            <img src="./img/arrow.svg" alt="Arrow Next">
+                            <img src="{{asset("img/arrow.svg")}}" alt="Arrow Next">
                         </div>
                     </button>
                 </div>
             </div>
         </div>
         <div class="promotion__image">
-            <img src="./img/good_hands.png" alt="Good Hands">
+            <img src="{{asset("img/good_hands.png")}}" alt="Good Hands">
         </div>
     </section>
     <section class="more-info">
@@ -221,7 +221,7 @@
             <button class="btn btn-yellow">
                 <div class="text-arrow">
                     <span class="text-arrow__item">Learn more</span>
-                    <img src="./img/arrow_white.svg" alt="Arrow Next">
+                    <img src="{{asset("img/arrow_white.svg")}}" alt="Arrow Next">
                 </div>
             </button>
         </div>

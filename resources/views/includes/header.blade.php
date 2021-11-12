@@ -1,7 +1,7 @@
 <header class="header">
     <div class="container">
         <div class="header__logo logo">
-            <a href="/"> <img src="../img/real_logo.svg" alt="logo"></a>
+            <a href="/"> <img src="{{asset('img/real_logo.svg')}}" alt="logo"></a>
         </div>
         <ul class="header__nav nav">
             <li class="nav__item"><a href="#">Nav link</a></li>
@@ -15,7 +15,7 @@
                     <a href={{ \Illuminate\Support\Facades\Auth::check()?route("user.houses"):route('login')}}>
                         <div class="text-arrow">
                             <span class="text-arrow__item">{{\Illuminate\Support\Facades\Auth::check() ? "My sales":"Work with us"}}</span>
-                            <img src="../img/arrow_white.svg" alt="Arrow Next">
+                            <img src="{{asset('img/arrow_white.svg')}}" alt="Arrow Next">
                         </div>
                     </a>
                 </button>

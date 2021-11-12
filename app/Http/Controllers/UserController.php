@@ -10,7 +10,5 @@ class UserController extends Controller
         return view("user.houses.index");
     }
 
-    public function update(Request $request){
 
-    }
 }
