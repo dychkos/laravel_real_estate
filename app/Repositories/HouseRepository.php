@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\House;
 use App\Models\Houses_images;
+use Illuminate\Support\Facades\Auth;
 
 class HouseRepository
 {
@@ -19,6 +20,11 @@ class HouseRepository
 
         $house = new $this->house;
 
+        if(!empty($data['id'])){
+            $house = $house->find($data['id']);
+            $house->images()->delete();
+        }
+
         $house->name=$data['name'];
         $house->description=$data['description'];
         $house->price=$data['price'];
@@ -32,9 +38,14 @@ class HouseRepository
         $house->garage_count=$data['garage_count'];
         $house->founded_year=$data['founded_year'];
 
+        $user_id = Auth::user()->id;
+        $house->user_id = $user_id;
+
         $house->save();
 
-        $house->images()->createMany($data['images']);
+        if(!empty($data["images"])){
+            $house->images()->createMany($data['images']);
+        }
 
         $house->fresh();
 
@@ -46,6 +57,12 @@ class HouseRepository
         $house = new $this->house;
 
         return $house->find($house_id);
+    }
+
+    public function showForUser(){
+        $house = new $this->house;
+        $user_id = Auth::user()->id;
+        return $house->where("user_id",$user_id)->get();
     }
 
 }

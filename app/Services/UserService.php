@@ -43,4 +43,19 @@ class UserService
     }
 
 
+    public function update($userData){
+        $userRepository = $this->userRepository;
+
+        $validatedUser = Validator::make($userData,[
+            'id' => ["required","integer"],
+            'name' => ["required","string","max:25"],
+            'image' => ["nullable","string"],
+        ])->validate();
+
+
+
+        return $userRepository->update($validatedUser);
+    }
+
+
 }

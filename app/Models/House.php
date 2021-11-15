@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
 
 class House extends Model
@@ -30,9 +31,19 @@ class House extends Model
         'updated_at'
     ];
 
-    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function images(): \Illuminate\Database\Eloquent\Relations\MorphMany
     {
-        return $this->hasMany(Houses_images::class);
+        return $this->morphMany(Image::class, 'image');
+    }
+
+//    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
+//    {
+//        return $this->hasMany(Houses_images::class);
+//    }
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
 

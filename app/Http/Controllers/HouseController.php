@@ -6,6 +6,7 @@ use App\Models\House;
 use App\Services\HouseService;
 use http\Env\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 
@@ -16,41 +17,33 @@ class HouseController extends Controller
         return view('houses.index',compact('houses'));
     }
 
-    public function showOne($house_id){
+    public function show($house_id){
         $house = \App\Models\House::find($house_id);
+
+//        if(Auth::user()->accessEdit($house_id)){
+//            $access = ["access"=>true];
+//            return view('houses.show',[compact('house','access')]);
+//        }
         return view('houses.show',compact('house'));
     }
 
-    public function addShow(Request $request){
-        Session::put('requestReferrer', URL::previous());
+    public function create(Request $request){
         return view('user.houses.create');
+    }
+
+    public function showForUser(HouseService $houseService){
+        $houses = $houseService->showForUser();
+        return view('user.houses.index',compact('houses'));
     }
 
     public function store(HouseService $houseService,Request $request){
 
-        $houseImages = array();
-
         if($files = $request->file('image')){
-            foreach($files as $file){
-                $image_name = md5(rand(1000,10000));
-                $ext = strtolower($file->getClientOriginalExtension());
-                $image_full_name = $image_name.'.'.$ext;
-                $uploade_path = "uploads/houses/";
-                $image_url = $uploade_path.$image_full_name;
-                $file->move($uploade_path,$image_full_name);
-                array_push($houseImages,["filename" => $image_url]);
-                //$image[] = $image_url;
-            }
+            $houseImages = $this->uploadImages($files);
         }
-//        if($request->hasfile('photo_previews'))
-//        {
-//            $file = $request->file('photo_previews');
-//            $extension = $file->getClientOriginalExtension();
-//            $filename = time().'.'.$extension;
-//            $file->move('uploads/houses/', $filename);
-//        }
 
         $createdHouse = array(
+            'user_id' => Auth::user()->id,
             'name' => $request->input('house_title'),
             'description' => $request->input('description'),
             'images' => $houseImages ?? [],
@@ -68,35 +61,25 @@ class HouseController extends Controller
         $result = $houseService->saveHouseData($createdHouse);
 
         return redirect()->route("houses.show",["id"=>$result->id]);
-        //return \response()->json($result);
     }
 
 
     public function edit(HouseService $houseService,Request $request,$house_id){
         $house = $houseService->show($house_id);
-
         return view("user.houses.edit",compact("house"));
 
     }
 
-    public function update(HouseService $houseService,Request $request){
-
-        $houseImages = array();
+    /**
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function update(HouseService $houseService, Request $request){
 
         if($files = $request->file('image')){
-            foreach($files as $file){
-                $image_name = md5(rand(1000,10000));
-                $ext = strtolower($file->getClientOriginalExtension());
-                $image_full_name = $image_name.'.'.$ext;
-                $uploade_path = "uploads/houses/";
-                $image_url = $uploade_path.$image_full_name;
-                $file->move($uploade_path,$image_full_name);
-                array_push($houseImages,["filename" => $image_url]);
-                //$image[] = $image_url;
-            }
-        }//
+            $houseImages = $this->uploadImages($files);
+        }
 
-        $createdHouse = array(
+        $updatedHouse = array(
             'name' => $request->input('house_title'),
             'description' => $request->input('description'),
             'images' => $houseImages ?? [],
@@ -111,10 +94,26 @@ class HouseController extends Controller
         );
 
 
-        $result = $houseService->saveHouseData($createdHouse);
+        $result = $houseService->update($updatedHouse);
 
-        return redirect()->route("house.show",["id"=>$result->id]);
-        //return \response()->json($result);
+        return redirect()->route("user.houses.show",["id"=>$result->id]);
+    }
+
+    private function uploadImages($files){
+        $houseImages = array();
+
+        foreach($files as $file){
+            $image_name = md5(rand(1000,10000));
+            $ext = strtolower($file->getClientOriginalExtension());
+            $image_full_name = $image_name.'.'.$ext;
+            $uploade_path = "uploads/houses/";
+            $image_url = $uploade_path.$image_full_name;
+            $file->move($uploade_path,$image_full_name);
+            array_push($houseImages,["filename" => $image_url]);
+
+        }
+
+        return $houseImages;
     }
 
 }

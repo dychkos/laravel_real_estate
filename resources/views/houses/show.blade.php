@@ -25,19 +25,19 @@
     <section class="house">
         <div class="container">
             <div class="row">
-                <div class="col-lg-7">
+                <div class="col-xl-7">
                     <div class="house__info">
                         <div class="house__preview">
                             <div class="row">
                                 <div  class="house__photo house__photo_big">
-                                    <img id="house-preview" src="{{"../".$house->images->first()->filename}}" alt="House Photo">
+                                    <img id="house-preview" src="{{asset($house->images->first()->filename)}}" alt="House Photo">
                                 </div>
                             </div>
                             <div class="row">
                                 @foreach($house->images as $img)
                                     <div class="col">
                                         <div class="house__photo house__photo_small">
-                                            <img src={{"../".$img->filename}} data-photo alt="House Photo">
+                                            <img src="{{asset($img->filename)}}" data-photo alt="House Photo">
                                         </div>
                                     </div>
                                 @endforeach
@@ -191,15 +191,39 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-xl-4">
+                    @if(\Illuminate\Support\Facades\Auth::user() && \Illuminate\Support\Facades\Auth::user()->canEdit($house->id))
+                        <div class="card">
+                            <div class="card__title author">
+                                <div class="author__info">
+                                    <div class="author__name author__name-thin">
+                                        <span>{{\Illuminate\Support\Facades\Auth::user()->name}}</span>
+                                    </div>
+                                    <div class="author__more">
+                                        <span><a href="#">{{\Illuminate\Support\Facades\Auth::user()->email}}</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card__footer">
+                                <button class="btn btn-yellow ">
+                                    <div class="text-arrow">
+                                        <a href="{{route("user.houses.edit",$house->id)}}">
+                                            <span class="text-arrow__item">Edit house info </span>
+                                            <img src="{{asset("img/arrow_white.svg")}}" alt="Arrow Next">
+                                        </a>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    @else
                     <form class="house__order">
                         <div class="house__order-author author">
                             <div class="author__icon">
-                                <img src="../img/user_icon.png" alt="User Icon">
+                                <img src="{{asset("/".$house->user->image->filename)}}" alt="User Icon">
                             </div>
                             <div class="author__info">
                                 <div class="author__name author__name-thin">
-                                    <span>Lara Madrigal</span>
+                                    <span>{{$house->user->name}}</span>
                                 </div>
                                 <div class="author__more">
                                     <span><a href="#">View profile</a></span>
@@ -227,6 +251,7 @@
                             </button>
                         </div>
                     </form>
+                    @endif
                 </div>
             </div>
         </div>

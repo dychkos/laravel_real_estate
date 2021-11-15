@@ -124,18 +124,13 @@ dropdowns.forEach(dropdown=>{
     let select = new Select(dropdown);
 })
 
-$(document).ready(function () {
-    "use strict";
-    $("#file").on("change", function (e) {
-        var files = $(this)[0].files;
-        if (files.length >= 2) {
-            $(".file_label").text(files.length + " Files Ready To Upload");
-        } else {
-            var fileName = e.target.value.split("\\").pop();
-            $(".file_label").text(fileName);
-        }
-    });
+document.getElementById('file').addEventListener("change",function (e) {
+    let files = this.files;
+    let fileLabel = document.querySelector(".file_label");
+    if (files.length >= 2) {
+        fileLabel.textContent  = files.length + " Files Ready To Upload";
+    } else {
+        fileLabel.textContent = e.target.value.split("\\").pop();
+    }
 });
-
-
 

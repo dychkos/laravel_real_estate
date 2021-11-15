@@ -31,13 +31,20 @@ Route::middleware("guest")->group(function(){
 });
 
 
-Route::get('houses/{id}',[HouseController::class,'showOne'])->where('id',"[0-9]+")->name("houses.show");
+Route::get('houses/{id}',[HouseController::class,'show'])->where('id',"[0-9]+")->name("houses.show");
 Route::middleware("auth")->group(function(){
-    Route::get('user/houses/create',[HouseController::class,'addShow'])->middleware("auth")->name("user.houses.create");
+    Route::get('user/houses/create',[HouseController::class,'create'])->middleware("auth")->name("user.houses.create");
     Route::post('user/houses/create',[HouseController::class,'store'])->name("user.houses.store");
 
-    Route::get('user/houses',[UserController::class,'index'])->name("user.houses");
-    Route::get('user/houses/{id}/edit',[HouseController::class,'edit'])->name("user.houses.edit");
+    Route::get('user/houses',[HouseController::class,'showForUser'])->name("user.houses");
+    Route::get('user/houses/{id}/',[HouseController::class,'show'])->name("user.houses.show")->middleware("access");
+    Route::get('user/houses/{id}/edit',[HouseController::class,'edit'])->name("user.houses.edit")->middleware("access");
+    Route::post('user/houses/{id}/edit',[HouseController::class,'update'])->name("user.houses.update")->middleware("access");
+
+    Route::get('user/edit',[UserController::class,'edit'])->name("user.edit");
+    Route::post('user/update',[UserController::class,'update'])->name("user.update");
+
+
 });
 
 
