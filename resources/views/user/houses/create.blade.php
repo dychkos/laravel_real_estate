@@ -9,7 +9,7 @@
                     <h4 class="validation-fail">Oop, you doesn`t fill all required fields</h4>
                 @endif
                 <h4 class="mb-3">House info</h4>
-                <form class="needs-validation" method="post" enctype='multipart/form-data'>
+                <form class="needs-validation" method="post" id="create_post" enctype='multipart/form-data'>
                     @csrf
                     <div class="row">
                         <div class="col-6 mb-3">
@@ -90,20 +90,44 @@
 
                         </div>
                     </div>
-                    <hr class="mb-4">
 
-                    <h4 class="mb-3">Upload house photo</h4>
-                    <div class="col mb-3">
-                        @error("images")
-                        <div class="validation-fail">{{$message}}</div>
-                        @enderror
-                        <div class="input_file">
-                            <label for="file" class="file_label">
-                                Select Your Files
-                            </label>
-                            <input type="file" id="file" id="photo_previews" name="image[]" multiple accept="image/png, image/gif, image/jpeg" />
+                    <div class="row">
+                        <div class="col mb-4">
+                            <h4 class="mb-3">Select house features</h4>
+                            <div class="dropdown dropdown_multyselect dropdown_bordered">
+                                <div class="dropdown__backdrop" data-type="backdrop" ></div>
+                                <div class="dropdown__header">
+                                    <div class="dropdown__title">
+
+                                    </div>
+                                    <div class="dropdown__arrow">
+                                        <img src="{{asset("img/arrow_down.svg")}}" alt="Arrow down">
+                                    </div>
+                                </div>
+                                <div class="dropdown__body">
+                                    @foreach($features as $feature)
+                                        <div class="dropdown__item"  data-type="item" data-id="{{$feature->id}}">{{$feature->title}}</div>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col mb-4">
+                            <h4 class="mb-3">Upload house photo</h4>
+                            <div class="col mb-3">
+                                <div class="input_file">
+                                    <label for="file" class="file_label">
+                                        Select Your Files
+                                    </label>
+                                    <input type="file" id="file" id="photo_previews" name="image[]" multiple accept="image/png, image/gif, image/jpeg" />
+                                    @error("images")
+                                    <div class="validation-fail">{{$message}}</div>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                     <button class="btn btn-yellow" type="submit">
                         <div class="text-arrow">
                             <span class="text-arrow__item">Next</span>

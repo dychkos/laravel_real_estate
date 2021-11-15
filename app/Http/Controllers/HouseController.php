@@ -28,7 +28,8 @@ class HouseController extends Controller
     }
 
     public function create(Request $request){
-        return view('user.houses.create');
+        $features = \App\Models\Features::all();
+        return view('user.houses.create',compact("features"));
     }
 
     public function showForUser(HouseService $houseService){

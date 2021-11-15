@@ -1,13 +1,26 @@
 
 class Select {
-    constructor(selector) {
+    constructor(selector,options) {
         this.$el = selector;
+        this.multy = options.multy ?? false;
+        this.placeholder = options.placeholder ?? "Choose item";
+        this.selected = [];
         this.#setup();
+    }
+
+
+    get Selected () {
+        return this.selected;
+    }
+
+    set Selected (selectedItems) {
+        return this.selected = selectedItems;
     }
 
 
     #setup() {
         this.clickHandler = this.clickHandler.bind(this);
+        this.$el.querySelector('.dropdown__title').textContent = this.placeholder;
         this.$el.addEventListener('click', this.clickHandler);
     }
 
@@ -32,10 +45,45 @@ class Select {
     }
 
     select(selectedItem) {
-        this.selectedItem = selectedItem;
-        console.log(selectedItem);
-        this.$el.querySelector('.dropdown__title').textContent = selectedItem.value;
+        if(this.multy){
+            if(!this.selected.some(el=>el.id===selectedItem.id)){
+                this.selected.push(selectedItem);
+            }
+            this.render();
+        }else{
+            this.selectedItem = selectedItem;
+            console.log(selectedItem);
+            this.$el.querySelector('.dropdown__title').textContent =  selectedItem.value;
+        }
         this.close()
+    }
+
+    selectedToNode(){
+        return this.selected.map(elem => {
+            let selectedOption = document.createElement("span");
+            selectedOption.classList.add("dropdown__multy");
+            selectedOption.addEventListener("click", (e) => {
+                e.stopPropagation();
+                this.selected  = this.selected.filter(el => el.id !== elem.id);
+                this.render(this.selectedToNode(this.selected));
+            })
+            selectedOption.textContent = elem.value;
+            return selectedOption;
+        });
+    }
+
+    render(){
+        let rootNode = this.$el.querySelector('.dropdown__title');
+        let selectedNodes = this.selectedToNode();
+        if(selectedNodes.length===0){
+            rootNode.textContent = this.placeholder;
+            return;
+        }
+        rootNode.textContent="";
+        selectedNodes.forEach(el=>{
+            rootNode.appendChild(el);
+        })
+
     }
 
     toggle() {
@@ -48,6 +96,10 @@ class Select {
 
     close() {
         this.$el.classList.remove('open') ;
+    }
+
+    remove(e){
+
     }
 
 }
@@ -88,7 +140,7 @@ class PhotoPreview{
 
 let btnBurger = document.querySelector('.burger');
 let menu = document.querySelector('.header__nav');
-let dropdowns = document.querySelectorAll('.dropdown');
+let dropdowns = document.querySelectorAll('._dropdown');
 
 btnBurger.addEventListener('click',function (e){
     btnBurger.classList.toggle('open')
@@ -118,10 +170,20 @@ if(swiperNode){
 
 }
 
+let multyDropdown = document.querySelector(".dropdown_multyselect");
 
+if(multyDropdown){
+    let multySelect = new Select(multyDropdown,{
+        multy:true,
+        placeholder:"Choose features"
+    })
+}
 
 dropdowns.forEach(dropdown=>{
-    let select = new Select(dropdown);
+    let select = new Select(dropdown,{
+        multy:false,
+        placeholder:"Choose features"
+    });
 })
 
 document.getElementById('file').addEventListener("change",function (e) {
@@ -133,4 +195,15 @@ document.getElementById('file').addEventListener("change",function (e) {
         fileLabel.textContent = e.target.value.split("\\").pop();
     }
 });
+
+// let create_post = document.getElementById("create_post");
+//
+// if(create_post){
+//     create_post.addEventListener("submit",(e)=>{
+//         e.preventDefault();
+//         let formData = new FormData();
+//         formData.append("")
+//     })
+// }
+//
 

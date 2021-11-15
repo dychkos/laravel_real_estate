@@ -195,6 +195,11 @@
                     @if(\Illuminate\Support\Facades\Auth::user() && \Illuminate\Support\Facades\Auth::user()->canEdit($house->id))
                         <div class="card">
                             <div class="card__title author">
+                                @if(\Illuminate\Support\Facades\Auth::user()->image)
+                                    <div class="author__icon">
+                                        <img src="{{asset('/'.\Illuminate\Support\Facades\Auth::user()->image->filename)}}" width="50px" height="50px" alt="User Icon">
+                                    </div>
+                                @endif
                                 <div class="author__info">
                                     <div class="author__name author__name-thin">
                                         <span>{{\Illuminate\Support\Facades\Auth::user()->name}}</span>

@@ -62,7 +62,7 @@
             <div class="listings__dropdown-group row row-cols-1 row-cols-md-4 ">
                 <div class="col">
                     <div class="listings__dropdown">
-                        <div class="dropdown">
+                        <div class="dropdown _dropdown">
                             <div class="dropdown__backdrop" data-type="backdrop" ></div>
                             <div class="dropdown__header">
                                 <div class="dropdown__title">Looking for</div>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="col">
                     <div class="listings__dropdown">
-                        <div class="dropdown">
+                        <div class="dropdown _dropdown">
                             <div class="dropdown__backdrop" data-type="backdrop" ></div>
                             <div class="dropdown__header">
                                 <div class="dropdown__title">Location</div>
@@ -100,7 +100,7 @@
                 </div>
                 <div class="col">
                     <div class="listings__dropdown">
-                        <div class="dropdown">
+                        <div class="dropdown _dropdown">
                             <div class="dropdown__backdrop" data-type="backdrop" ></div>
                             <div class="dropdown__header">
                                 <div class="dropdown__title">Property type</div>
@@ -119,7 +119,7 @@
                 </div>
                 <div class="col">
                     <div class="listings__dropdown">
-                        <div class="dropdown">
+                        <div class="dropdown _dropdown">
                             <div class="dropdown__backdrop" data-type="backdrop" ></div>
                             <div class="dropdown__header">
                                 <div class="dropdown__title">Price</div>
