@@ -15,14 +15,12 @@ class HouseRepository
         $this->house=$house;
     }
 
-
     public function save($data){
 
         $house = new $this->house;
 
         if(!empty($data['id'])){
             $house = $house->find($data['id']);
-            $house->images()->delete();
         }
 
         $house->name=$data['name'];
@@ -44,7 +42,12 @@ class HouseRepository
         $house->save();
 
         if(!empty($data["images"])){
+            $house->images()->delete();
             $house->images()->createMany($data['images']);
+        }
+
+        if(!empty($data["features"])){
+            $house->features()->sync($data['features']);
         }
 
         $house->fresh();

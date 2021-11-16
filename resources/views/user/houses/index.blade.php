@@ -76,17 +76,17 @@
                 <div class="col-xl-4">
                     <div class="card">
                         <div class="card__title author">
-                            @if(\Illuminate\Support\Facades\Auth::user()->image)
+                            @if($user->image)
                                 <div class="author__icon">
-                                    <img src="{{asset('/'.\Illuminate\Support\Facades\Auth::user()->image->filename)}}" width="50px" height="50px" alt="User Icon">
+                                    <img src="{{asset('/'.$user->image->filename)}}" width="50px" height="50px" alt="User Icon">
                                 </div>
                             @endif
                             <div class="author__info">
                                 <div class="author__name author__name-thin">
-                                    <span>{{\Illuminate\Support\Facades\Auth::user()->name}}</span>
+                                    <span>{{$user->name}}</span>
                                 </div>
                                 <div class="author__more">
-                                    <span><a href="#">{{\Illuminate\Support\Facades\Auth::user()->email}}</a></span>
+                                    <span><a href="#">{{$user->email}}</a></span>
                                 </div>
                             </div>
                         </div>

@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function index (Request $request){
+    public function index(Request $request)
+    {
         return view('login.index');
     }
 
@@ -16,14 +17,13 @@ class LoginController extends Controller
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required',"min:6"],
+            'password' => ['required', "min:6"],
         ]);
 
         $remember = $request->input("remember_me");
 
-        if (Auth::attempt($credentials,$remember)) {
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-
             return redirect()->route('user.houses');
         }
 
@@ -43,14 +43,4 @@ class LoginController extends Controller
         return redirect('/');
     }
 
-
-//    public function store(Request $request){
-//
-//        $session = session();
-//
-//        $session->put(["foo"=>"bar"]);
-//        dd($session);
-//
-//        return "Запрос на логин!";
-//    }
 }

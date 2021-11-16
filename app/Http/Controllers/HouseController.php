@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Features;
 use App\Models\House;
 use App\Services\HouseService;
 use http\Env\Response;
@@ -18,13 +19,10 @@ class HouseController extends Controller
     }
 
     public function show($house_id){
-        $house = \App\Models\House::find($house_id);
-
-//        if(Auth::user()->accessEdit($house_id)){
-//            $access = ["access"=>true];
-//            return view('houses.show',[compact('house','access')]);
-//        }
-        return view('houses.show',compact('house'));
+        $house = House::find($house_id);
+        $user = Auth::user();
+        $similarHouses = House::inRandomOrder()->limit(7)->get()->except($house_id);
+        return view('houses.show',compact('house',"user","similarHouses"));
     }
 
     public function create(Request $request){
@@ -34,7 +32,8 @@ class HouseController extends Controller
 
     public function showForUser(HouseService $houseService){
         $houses = $houseService->showForUser();
-        return view('user.houses.index',compact('houses'));
+        $user = Auth::user();
+        return view('user.houses.index',compact('houses','user'));
     }
 
     public function store(HouseService $houseService,Request $request){
@@ -48,6 +47,7 @@ class HouseController extends Controller
             'name' => $request->input('house_title'),
             'description' => $request->input('description'),
             'images' => $houseImages ?? [],
+            'features' => $request->input("feature") ?? [],
             'price' => $request->input('price'),
             'ft_price' => $request->input('ft_price'),
             'address' => $request->input('address'),
@@ -66,8 +66,9 @@ class HouseController extends Controller
 
 
     public function edit(HouseService $houseService,Request $request,$house_id){
-        $house = $houseService->show($house_id);
-        return view("user.houses.edit",compact("house"));
+        $house = House::find($house_id);
+        $features = Features::all();
+        return view("user.houses.edit",compact("house","features"));
 
     }
 
@@ -81,9 +82,11 @@ class HouseController extends Controller
         }
 
         $updatedHouse = array(
+            'id' => $request->id,
             'name' => $request->input('house_title'),
             'description' => $request->input('description'),
             'images' => $houseImages ?? [],
+            'features' => $request->input("feature") ?? [],
             'price' => $request->input('price'),
             'ft_price' => $request->input('ft_price'),
             'address' => $request->input('address'),
@@ -100,7 +103,8 @@ class HouseController extends Controller
         return redirect()->route("user.houses.show",["id"=>$result->id]);
     }
 
-    private function uploadImages($files){
+    private function uploadImages($files): array
+    {
         $houseImages = array();
 
         foreach($files as $file){
@@ -111,7 +115,6 @@ class HouseController extends Controller
             $image_url = $uploade_path.$image_full_name;
             $file->move($uploade_path,$image_full_name);
             array_push($houseImages,["filename" => $image_url]);
-
         }
 
         return $houseImages;

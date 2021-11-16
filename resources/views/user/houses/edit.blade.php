@@ -1,7 +1,7 @@
 @extends("layouts.base")
 
 @section("content")
-    @include('includes.page_header',["title"=>"Add your house"])
+    @include('includes.page_header',["title"=>"Edit house info"])
     <div class="container py-3">
         <div class="row">
             <div class="col-md-12 order-md-1">
@@ -31,7 +31,7 @@
                     <div class="mb-3">
                         <label for="username">Description</label>
                         <div class="input-group">
-                            <textarea type="text" class="form-control" rows="10" id="username" name="description" placeholder="So, in my house you can..." >
+                            <textarea type="text" class="form-control" rows="10" id="username" name="description" >
                               {{$house->description}}
                             </textarea>
                         </div>
@@ -90,20 +90,52 @@
 
                         </div>
                     </div>
-                    <hr class="mb-4">
 
-                    <h4 class="mb-3">Upload house photo</h4>
-                    <div class="col mb-3">
-                        @error("images")
-                        <div class="validation-fail">{{$message}}</div>
-                        @enderror
-                        <div class="input_file">
-                            <label for="file" class="file_label">
-                                Select Your Files
-                            </label>
-                            <input type="file" id="file" id="photo_previews" name="image[]" multiple accept="image/png, image/gif, image/jpeg" />
+                    <div class="row">
+                        <div class="col mb-4">
+                            <h4 class="mb-3">Select house features</h4>
+                            <div class="dropdown dropdown_multyselect dropdown_bordered">
+                                <div class="dropdown__backdrop" data-type="backdrop" ></div>
+                                <div class="dropdown__header">
+                                    <div class="dropdown__title">
+                                        @if($house->features()->get()->isNotEmpty())
+                                            @foreach($house->features as $feature)
+                                                <span class="dropdown__multy">
+                                                    {{$feature->title}}
+                                                    <input type="hidden" name="feature[]" value=" {{$feature->id}}">
+                                                </span>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                    <div class="dropdown__arrow">
+                                        <img src="{{asset("img/arrow_down.svg")}}" alt="Arrow down">
+                                    </div>
+                                </div>
+                                <div class="dropdown__body">
+                                    @foreach($features as $feature)
+                                        <div class="dropdown__item" data-type="item" data-id="{{$feature->id}}">{{$feature->title}}
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col mb-4">
+                            <h4 class="mb-3">Upload house photo</h4>
+                            <div class="col mb-3">
+                                <div class="input_file">
+                                    <label for="file_input" class="file_label">
+                                        Select Your Files
+                                    </label>
+                                    <input type="file" id="file_input" name="image[]" multiple accept="image/png, image/gif, image/jpeg" />
+                                    @error("images")
+                                    <div class="validation-fail">{{$message}}</div>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                     <button class="btn btn-yellow" type="submit">
                         <div class="text-arrow">
                             <span class="text-arrow__item">Next</span>
@@ -117,3 +149,19 @@
 
 
 @endsection
+
+
+@once
+    @push("js")
+        <script src="{{asset("js/libs/Select.js")}}"></script>
+        <script src="{{asset("js/houses/create.js")}}"></script>
+        <script>
+            let selected = @json($house->features);
+            selected = selected.map(sel=>{
+                return {id:sel.id,value:sel.title}
+            });
+            multySelect.selected = selected;
+        </script>
+    @endpush
+@endonce
+

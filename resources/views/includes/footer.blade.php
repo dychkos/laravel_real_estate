@@ -7,11 +7,13 @@
                 </div>
             </div>
             <div class="footer__col_right col">
-                <button class="btn btn-yellow">
-                    <div class="text-arrow">
-                        <span class="text-arrow__item">Work with us</span>
-                        <img src="{{asset('img/arrow_white.svg')}}" alt="Arrow Next">
-                    </div>
+                <button class="btn btn-yellow" >
+                    <a href={{ \Illuminate\Support\Facades\Auth::check()?route("user.houses"):route('login')}}>
+                        <div class="text-arrow">
+                            <span class="text-arrow__item">{{\Illuminate\Support\Facades\Auth::check() ? "My sales":"Work with us"}}</span>
+                            <img src="{{asset('img/arrow_white.svg')}}" alt="Arrow Next">
+                        </div>
+                    </a>
                 </button>
             </div>
         </div>

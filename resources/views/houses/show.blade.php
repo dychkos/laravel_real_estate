@@ -90,122 +90,42 @@
                                 {{$house->description}}
                             </div>
                         </div>
-                        <div class="house__features paper">
-                            <div class="paper__title">
-                                <h4>Features</h4>
-                            </div>
-                            <div class="paper__body">
-                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 ">
-                                    <div class="feature">
-                                        <div class="feature__icon">
-                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
+                        @if($house->features()->get()->isNotEmpty())
+                            <div class="house__features paper">
+                                <div class="paper__title">
+                                    <h4>Features</h4>
+                                </div>
+                                <div class="paper__body">
+                                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 ">
+                                        @foreach($house->features as $feature)
+                                        <div class="feature">
+                                            <div class="feature__icon">
+                                                <img src="{{asset("img/check.svg")}}" alt="Feature">
+                                            </div>
+                                            <span class="feature__item">{{$feature->title}}</span>
                                         </div>
-                                        <span class="feature__item">Air Conditioning</span>
-                                    </div>
-                                    <div class="feature">
-                                        <div class="feature__icon">
-                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
-                                        </div>
-                                        <span class="feature__item">Air Conditioning</span>
-                                    </div>
-                                    <div class="feature">
-                                        <div class="feature__icon">
-                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
-                                        </div>
-                                        <span class="feature__item">Air Conditioning</span>
-                                    </div>
-                                    <div class="feature">
-                                        <div class="feature__icon">
-                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
-                                        </div>
-                                        <span class="feature__item">Air Conditioning</span>
-                                    </div>
-                                    <div class="feature">
-                                        <div class="feature__icon">
-                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
-                                        </div>
-                                        <span class="feature__item">Air Conditioning</span>
-                                    </div>
-                                    <div class="feature">
-                                        <div class="feature__icon">
-                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
-                                        </div>
-                                        <span class="feature__item">Air Conditioning</span>
-                                    </div>
-                                    <div class="feature">
-                                        <div class="feature__icon">
-                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
-                                        </div>
-                                        <span class="feature__item">Air Conditioning</span>
-                                    </div>
-                                    <div class="feature">
-                                        <div class="feature__icon">
-                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
-                                        </div>
-                                        <span class="feature__item">Air Conditioning</span>
-                                    </div>
-                                    <div class="feature">
-                                        <div class="feature__icon">
-                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
-                                        </div>
-                                        <span class="feature__item">Air Conditioning</span>
-                                    </div>
-                                    <div class="feature">
-                                        <div class="feature__icon">
-                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
-                                        </div>
-                                        <span class="feature__item">Air Conditioning</span>
-                                    </div>
-                                    <div class="feature">
-                                        <div class="feature__icon">
-                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
-                                        </div>
-                                        <span class="feature__item">Air Conditioning</span>
-                                    </div>
-                                    <div class="feature">
-                                        <div class="feature__icon">
-                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
-                                        </div>
-                                        <span class="feature__item">Air Conditioning</span>
-                                    </div>
-                                    <div class="feature">
-                                        <div class="feature__icon">
-                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
-                                        </div>
-                                        <span class="feature__item">Air Conditioning</span>
-                                    </div>
-                                    <div class="feature">
-                                        <div class="feature__icon">
-                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
-                                        </div>
-                                        <span class="feature__item">Air Conditioning</span>
-                                    </div>
-                                    <div class="feature">
-                                        <div class="feature__icon">
-                                            <img src="{{asset("img/check.svg")}}" alt="Feature">
-                                        </div>
-                                        <span class="feature__item">Air Conditioning</span>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
                 <div class="col-xl-4">
-                    @if(\Illuminate\Support\Facades\Auth::user() && \Illuminate\Support\Facades\Auth::user()->canEdit($house->id))
+                    @if($user && $user->canEdit($house->id))
                         <div class="card">
                             <div class="card__title author">
-                                @if(\Illuminate\Support\Facades\Auth::user()->image)
+                                @if($user->image)
                                     <div class="author__icon">
-                                        <img src="{{asset('/'.\Illuminate\Support\Facades\Auth::user()->image->filename)}}" width="50px" height="50px" alt="User Icon">
+                                        <img src="{{asset('/'.$user->image->filename)}}" width="50px" height="50px" alt="User Icon">
                                     </div>
                                 @endif
                                 <div class="author__info">
                                     <div class="author__name author__name-thin">
-                                        <span>{{\Illuminate\Support\Facades\Auth::user()->name}}</span>
+                                        <span>{{$user->name}}</span>
                                     </div>
                                     <div class="author__more">
-                                        <span><a href="#">{{\Illuminate\Support\Facades\Auth::user()->email}}</a></span>
+                                        <span><a href="#">{{$user->email}}</a></span>
                                     </div>
                                 </div>
                             </div>
@@ -223,9 +143,11 @@
                     @else
                     <form class="house__order">
                         <div class="house__order-author author">
+                            @if($house->user->image)
                             <div class="author__icon">
                                 <img src="{{asset("/".$house->user->image->filename)}}" alt="User Icon">
                             </div>
+                            @endif
                             <div class="author__info">
                                 <div class="author__name author__name-thin">
                                     <span>{{$house->user->name}}</span>
@@ -261,6 +183,7 @@
             </div>
         </div>
     </section>
+    @if(isset($similarHouses))
     <section class="similar">
         <div class="container">
             <div class="similar__title marked-title">
@@ -272,233 +195,55 @@
             <div class="similar__swiper">
                 <div class="swiper sim-swiper">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="card ">
-                                <div class="card__image">
-                                    <img src="{{asset("img/house1.png")}}" alt="House Item">
-                                </div>
-                                <div class="card__title">
-                                    <h4>
-                                        Malto House
-                                    </h4>
-                                </div>
-                                <div class="card__footer row">
-                                    <div class="card__footer-item col">
-                                        <img src="{{asset("img/Bed.svg")}}" alt="Bed">
-                                        <span class="card__footer-info">
-                  7
-                </span>
+                        @foreach($similarHouses as $similar)
+                            <div class="swiper-slide">
+                                <a href={{{ url('houses/'.$similar->id) }}}>
+                                    <div class="card ">
+                                        <div class="card__image">
+                                            <img src="{{asset("/".$similar->images->first()->filename)}}" alt="House Item">
+                                        </div>
+                                        <div class="card__title">
+                                            <h4>
+                                                {{$similar->name}}
+                                            </h4>
+                                        </div>
+                                        <div class="card__footer row">
+                                            <div class="card__footer-item col">
+                                                <img src="{{asset("img/Bed.svg")}}" alt="Bed">
+                                                <span class="card__footer-info">
+                       {{$similar->bedrooms_count}}
+                    </span>
+                                            </div>
+                                            <div class="card__footer-item col ">
+                                                <img src="{{asset("img/Shower.svg")}}" alt="Shower">
+                                                <span class="card__footer-info">
+                       {{$similar->showers_count}}
+                    </span>
+                                            </div>
+                                            <div class="card__footer-item col">
+                                                <img src="{{asset("img/Size.svg")}}" alt="Size">
+                                                <span class="card__footer-info">
+                       {{$similar->floors_count}}
+                    </span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="card__footer-item col ">
-                                        <img src="{{asset("img/Shower.svg")}}" alt="Shower">
-                                        <span class="card__footer-info">
-                  14
-                </span>
-                                    </div>
-                                    <div class="card__footer-item col">
-                                        <img src="{{asset("img/Size.svg")}}" alt="Size">
-                                        <span class="card__footer-info">
-                  4
-                </span>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="card ">
-                                <div class="card__image">
-                                    <img src="{{asset("img/house_bg.png")}}" alt="House Item">
-                                </div>
-                                <div class="card__title">
-                                    <h4>
-                                        Malto House
-                                    </h4>
-                                </div>
-                                <div class="card__footer row">
-                                    <div class="card__footer-item col">
-                                        <img src="{{asset("img/Bed.svg")}}" alt="Bed">
-                                        <span class="card__footer-info">
-                  7
-                </span>
-                                    </div>
-                                    <div class="card__footer-item col ">
-                                        <img src="{{asset("img/Shower.svg")}}" alt="Shower">
-                                        <span class="card__footer-info">
-                  14
-                </span>
-                                    </div>
-                                    <div class="card__footer-item col">
-                                        <img src="{{asset("img/Size.svg")}}" alt="Size">
-                                        <span class="card__footer-info">
-                  4
-                </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="card ">
-                                <div class="card__image">
-                                    <img src="{{asset("img/house_bg.png")}}" alt="House Item">
-                                </div>
-                                <div class="card__title">
-                                    <h4>
-                                        Malto House
-                                    </h4>
-                                </div>
-                                <div class="card__footer row">
-                                    <div class="card__footer-item col">
-                                        <img src="{{asset("img/Bed.svg")}}" alt="Bed">
-                                        <span class="card__footer-info">
-                  7
-                </span>
-                                    </div>
-                                    <div class="card__footer-item col ">
-                                        <img src="{{asset("img/Shower.svg")}}" alt="Shower">
-                                        <span class="card__footer-info">
-                  14
-                </span>
-                                    </div>
-                                    <div class="card__footer-item col">
-                                        <img src="{{asset("img/Size.svg")}}" alt="Size">
-                                        <span class="card__footer-info">
-                  4
-                </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="card ">
-                                <div class="card__image">
-                                    <img src="{{asset("img/house1.png")}}" alt="House Item">
-                                </div>
-                                <div class="card__title">
-                                    <h4>
-                                        Malto House
-                                    </h4>
-                                </div>
-                                <div class="card__footer row">
-                                    <div class="card__footer-item col">
-                                        <img src="{{asset("img/Bed.svg")}}" alt="Bed">
-                                        <span class="card__footer-info">
-                  7
-                </span>
-                                    </div>
-                                    <div class="card__footer-item col ">
-                                        <img src="{{asset("img/Shower.svg")}}" alt="Shower">
-                                        <span class="card__footer-info">
-                  14
-                </span>
-                                    </div>
-                                    <div class="card__footer-item col">
-                                        <img src="{{asset("img/Size.svg")}}" alt="Size">
-                                        <span class="card__footer-info">
-                  4
-                </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="card ">
-                                <div class="card__image">
-                                    <img src="{{asset("img/house_bg.png")}}" alt="House Item">
-                                </div>
-                                <div class="card__title">
-                                    <h4>
-                                        Malto House
-                                    </h4>
-                                </div>
-                                <div class="card__footer row">
-                                    <div class="card__footer-item col">
-                                        <img src="{{asset("img/Bed.svg")}}" alt="Bed">
-                                        <span class="card__footer-info">
-                  7
-                </span>
-                                    </div>
-                                    <div class="card__footer-item col ">
-                                        <img src="{{asset("img/Shower.svg")}}" alt="Shower">
-                                        <span class="card__footer-info">
-                  14
-                </span>
-                                    </div>
-                                    <div class="card__footer-item col">
-                                        <img src="{{asset("img/Size.svg")}}" alt="Size">
-                                        <span class="card__footer-info">
-                  4
-                </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="card ">
-                                <div class="card__image">
-                                    <img src="{{asset("img/house1.png")}}" alt="House Item">
-                                </div>
-                                <div class="card__title">
-                                    <h4>
-                                        Malto House
-                                    </h4>
-                                </div>
-                                <div class="card__footer row">
-                                    <div class="card__footer-item col">
-                                        <img src="{{asset("img/Bed.svg")}}" alt="Bed">
-                                        <span class="card__footer-info">
-                  7
-                </span>
-                                    </div>
-                                    <div class="card__footer-item col ">
-                                        <img src="{{asset("img/Shower.svg")}}" alt="Shower">
-                                        <span class="card__footer-info">
-                  14
-                </span>
-                                    </div>
-                                    <div class="card__footer-item col">
-                                        <img src="{{asset("img/Size.svg")}}" alt="Size">
-                                        <span class="card__footer-info">
-                  4
-                </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="card ">
-                                <div class="card__image">
-                                    <img src="{{asset("img/house_bg.png")}}" alt="House Item">
-                                </div>
-                                <div class="card__title">
-                                    <h4>
-                                        Malto House
-                                    </h4>
-                                </div>
-                                <div class="card__footer row">
-                                    <div class="card__footer-item col">
-                                        <img src="{{asset("img/Bed.svg")}}" alt="Bed">
-                                        <span class="card__footer-info">
-                  7
-                </span>
-                                    </div>
-                                    <div class="card__footer-item col ">
-                                        <img src="{{asset("img/Shower.svg")}}" alt="Shower">
-                                        <span class="card__footer-info">
-                  14
-                </span>
-                                    </div>
-                                    <div class="card__footer-item col">
-                                        <img src="{{asset("img/Size.svg")}}" alt="Size">
-                                        <span class="card__footer-info">
-                  4
-                </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    @endif
 @endsection
+
+@once
+    @push("js")
+        <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+        <script src="{{asset("js/libs/PhotoPreview.js")}}"></script>
+        <script src="{{asset("js/houses/show.js")}}"></script>
+    @endpush
+@endonce
+

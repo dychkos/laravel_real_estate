@@ -36,19 +36,16 @@ class House extends Model
         return $this->morphMany(Image::class, 'image');
     }
 
-//    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
-//    {
-//        return $this->hasMany(Houses_images::class);
-//    }
-
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function features(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function features(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->hasMany(Features::class);
+        return $this->belongsToMany(Features::class,'houses_features',
+            'house_id',
+            'feature_id');
     }
 
 

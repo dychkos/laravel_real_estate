@@ -38,7 +38,7 @@
                                 </button>
                             </div>
                             <p>
-                                If you haven`t account please <a class="link" href="{{"registration"}}">Register</a>
+                                If you haven`t account please <a class="link" href="{{route("registration")}}">Register</a>
                             </p>
                         </div>
 

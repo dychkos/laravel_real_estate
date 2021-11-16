@@ -4,9 +4,6 @@
             <a href="/"> <img src="{{asset('img/real_logo.svg')}}" alt="logo"></a>
         </div>
         <ul class="header__nav nav">
-            <li class="nav__item"><a href="#">Nav link</a></li>
-            <li class="nav__item"><a href="#">Nav link</a></li>
-            <li class="nav__item"><a href="#">Nav link</a></li>
             @if(\Illuminate\Support\Facades\Auth::check())
                 <li class="nav__item"><a href="{{route("login.logout")}}">Logout</a></li>
             @endif
@@ -26,3 +23,9 @@
         </div>
     </div>
 </header>
+
+@once
+    @push("js")
+        <script src="{{asset("js/components/burger.js")}}"></script>
+    @endpush
+@endonce

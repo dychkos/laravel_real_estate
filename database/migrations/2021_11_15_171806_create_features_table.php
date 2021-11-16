@@ -16,8 +16,6 @@ class CreateFeaturesTable extends Migration
         Schema::create('features', function (Blueprint $table) {
             $table->id();
             $table->tinyText("title");
-            $table->unsignedBigInteger("feature_id");
-            $table->foreign("feature_id")->references("id")->on("feature")->cascadeOnDelete();
             $table->timestamps();
         });
     }

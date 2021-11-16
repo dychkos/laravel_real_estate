@@ -31,7 +31,7 @@
                     <div class="mb-3">
                         <label for="username">Description</label>
                         <div class="input-group">
-                            <textarea type="text" class="form-control" id="username" name="description" placeholder="So, in my house you can..." >
+                            <textarea type="text" class="form-control" name="description" placeholder="So, in my house you can..." >
                                 {{old("description")}}
                             </textarea>
                         </div>
@@ -106,7 +106,8 @@
                                 </div>
                                 <div class="dropdown__body">
                                     @foreach($features as $feature)
-                                        <div class="dropdown__item"  data-type="item" data-id="{{$feature->id}}">{{$feature->title}}</div>
+                                        <div class="dropdown__item" data-type="item" data-id="{{$feature->id}}">{{$feature->title}}
+                                        </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -116,10 +117,10 @@
                             <h4 class="mb-3">Upload house photo</h4>
                             <div class="col mb-3">
                                 <div class="input_file">
-                                    <label for="file" class="file_label">
+                                    <label for="file_input" class="file_label">
                                         Select Your Files
                                     </label>
-                                    <input type="file" id="file" id="photo_previews" name="image[]" multiple accept="image/png, image/gif, image/jpeg" />
+                                    <input type="file" id="file_input" name="image[]" multiple accept="image/png, image/gif, image/jpeg" />
                                     @error("images")
                                     <div class="validation-fail">{{$message}}</div>
                                     @enderror
@@ -134,6 +135,7 @@
                             <img src="{{asset('img/arrow_white.svg')}}" alt="Arrow Next">
                         </div>
                     </button>
+
                 </form>
             </div>
         </div>
@@ -142,3 +144,10 @@
 
 
 @endsection
+
+@once
+    @push("js")
+        <script src="{{asset("js/libs/Select.js")}}"></script>
+        <script src="{{asset("js/houses/create.js")}}"></script>
+    @endpush
+@endonce

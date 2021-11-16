@@ -141,7 +141,6 @@
             <div class="listings__cards cards">
                 <div class="cards__body row row-cols-1 row-cols-sm-2 row-cols-md-3">
                     @foreach($houses as $house)
-
                         <div class="col">
                             <a href={{{ url('houses/'.$house->id) }}}>
                                 <div class="card ">
@@ -290,3 +289,10 @@
         </div>
     </section>
 @endsection
+
+@once
+    @push("js")
+        <script src="{{asset("js/libs/Select.js")}}"></script>
+        <script src="{{asset("js/home.js")}}"></script>
+    @endpush
+@endonce
