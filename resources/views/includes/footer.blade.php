@@ -1,6 +1,6 @@
 <footer class="footer">
     <div class="container">
-        <div class="footer__row-1 row row-cols-1 row-cols-2">
+        <div class="footer__row-1 row row-cols-1 row-cols-sm-2">
             <div class="footer__col col">
                 <div class="footer__title">
                     <h3>Make your dreams a </h3> <h3 class="yellow">reality</h3>
@@ -17,11 +17,11 @@
                 </button>
             </div>
         </div>
-        <div class="footer__row-2 row row-cols-1 row-cols-sm-2 row-cols-sm-3 row-cols-sm-4">
-            <div class="footer__col col">
+        <div class="footer__row-2 row row-cols-2">
+            <div class="footer__col footer__col_absolute col">
                 <div class="footer__fix-size">
                     <div class="footer__logo logo">
-                        <img src="{{asset('img/real_logo.svg')}}" alt="logo">
+                        <img src="{{asset("img/real_logo.svg")}}" alt="logo">
                     </div>
                     <div class="footer__social social">
                         <a class="social" href="#">

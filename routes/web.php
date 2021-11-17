@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\DB;
@@ -32,6 +33,8 @@ Route::middleware("guest")->group(function(){
 
 
 Route::get('houses/{id}',[HouseController::class,'show'])->where('id',"[0-9]+")->name("houses.show");
+Route::post('houses/{id}',[OrderController::class,'store'])->where('id',"[0-9]+")->name("orders.store");
+
 Route::middleware("auth")->group(function(){
     Route::get('user/houses/create',[HouseController::class,'create'])->middleware("auth")->name("user.houses.create");
     Route::post('user/houses/create',[HouseController::class,'store'])->name("user.houses.store");
@@ -43,6 +46,8 @@ Route::middleware("auth")->group(function(){
 
     Route::get('user/edit',[UserController::class,'edit'])->name("user.edit");
     Route::post('user/update',[UserController::class,'update'])->name("user.update");
+
+    Route::get("user/orders",[OrderController::class,'index'])->name("user.orders");
 
 });
 

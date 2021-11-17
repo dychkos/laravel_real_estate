@@ -59,7 +59,7 @@
                     Find your next place to live
                 </h2>
             </div>
-            <div class="listings__dropdown-group row row-cols-1 row-cols-md-4 ">
+            <div class="listings__dropdown-group row row-cols-2 row-cols-md-4 ">
                 <div class="col">
                     <div class="listings__dropdown">
                         <div class="dropdown _dropdown">

@@ -45,3 +45,13 @@
     </section>
 
 @endsection
+
+
+@once
+    @push("js")
+        <script src="{{asset("js/libs/Select.js")}}"></script>
+        <script src="{{asset("js/components/fileInput.js")}}"></script>
+    @endpush
+@endonce
+
+

@@ -85,16 +85,14 @@
                                 <div class="author__name author__name-thin">
                                     <span>{{$user->name}}</span>
                                 </div>
-                                <div class="author__more">
-                                    <span><a href="#">{{$user->email}}</a></span>
-                                </div>
+                                <span class="link"><a href="{{route("user.edit")}}">Change profile info</a></span>
                             </div>
                         </div>
                         <div class="card__footer">
-                            <a href="{{route("user.edit")}}">
+                            <a href="{{route("user.orders")}}">
                                 <button class="btn btn-yellow ">
                                     <div class="text-arrow">
-                                        <span class="text-arrow__item">Edit info </span>
+                                        <span class="text-arrow__item">My orders </span>
                                         <img src="{{asset('img/arrow_white.svg')}}" alt="Arrow Next">
                                     </div>
                                 </button>
@@ -106,3 +104,4 @@
         </div>
     </section>
 @endsection
+

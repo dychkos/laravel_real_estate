@@ -141,7 +141,8 @@
                             </div>
                         </div>
                     @else
-                    <form class="house__order">
+                    <form class="house__order" method="POST" >
+                        @csrf
                         <div class="house__order-author author">
                             @if($house->user->image)
                             <div class="author__icon">
@@ -158,18 +159,35 @@
                             </div>
                         </div>
                         <div class="house__order-field">
-                            <input type="text" placeholder="Name">
+                            @error("customer_name")
+                            <div class="validation-fail">{{$message}}</div>
+                            @enderror
+                            <input type="text" name="customer_name" value="{{$user->name ?? ""}}" placeholder="Name">
                         </div>
                         <div class="house__order-field">
-                            <input type="text" placeholder="Phone">
+                            @error("customer_email")
+                            <div class="validation-fail">{{$message}}</div>
+                            @enderror
+                            <input type="email" name="customer_email" value="{{$user->email ?? ""}}" placeholder="Email">
                         </div>
                         <div class="house__order-field">
-                            <input type="email" placeholder="Email">
+                            @error("customer_phone")
+                            <div class="validation-fail">{{$message}}</div>
+                            @enderror
+                            <input type="text" name="customer_phone" placeholder="Phone">
                         </div>
                         <div class="house__order-field">
-                            <textarea placeholder="Hello, I am interested in…"></textarea>
+                            @error("customer_message")
+                            <div class="validation-fail">{{$message}}</div>
+                            @enderror
+                            <textarea name="customer_message" placeholder="Hello, I am interested in…"></textarea>
                         </div>
                         <div class="houser__order-field">
+                            @if(session()->has('message'))
+                                <div class="yellow">
+                                    {{ session()->get('message') }}
+                                </div>
+                            @endif
                             <button type="submit" class="btn btn-black full-width">
                                 <div class="text-arrow">
                                     <span class="text-arrow__item">Learn more</span>

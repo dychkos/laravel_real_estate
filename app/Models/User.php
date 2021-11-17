@@ -34,4 +34,9 @@ class User extends Model implements AuthenticatableContract
        return $this->houses()->where("id",$house_id)->get()->isNotEmpty();
     }
 
+    public function orders(): \Illuminate\Database\Eloquent\Relations\HasOneThrough
+    {
+        return $this->hasOneThrough(Order::class,House::class);
+    }
+
 }
