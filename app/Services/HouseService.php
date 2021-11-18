@@ -44,15 +44,16 @@ class HouseService
      * @throws \Illuminate\Validation\ValidationException
      */
     public function update($house){
+
         $validated = Validator::make($house,[
             'id' => ["required","integer"],
             'name' => ["required","string","max:25"],
             'description' =>["nullable","string"],
             'images' => ["nullable","array","max:7"],
             'features' => ["nullable","array"],
-            'price' => ["required","integer"],
+            'price' => ["nullable","integer"],
             'ft_price' => ["nullable","integer"],
-            'address' => ["required","string"],
+            'address' => ["nullable","string"],
             'bedrooms_count' => ["nullable","integer"],
             'showers_count' => ["nullable","integer"],
             'garage_count' => ["nullable","integer"],
