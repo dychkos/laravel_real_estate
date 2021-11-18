@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RegistrationController;
@@ -48,6 +49,11 @@ Route::middleware("auth")->group(function(){
     Route::post('user/update',[UserController::class,'update'])->name("user.update");
 
     Route::get("user/orders",[OrderController::class,'index'])->name("user.orders");
+
+    Route::get("user/admin-panel",[AdminController::class,"index"])->name("user.admin.index");
+    Route::post("user/admin-panel/features",[AdminController::class,"storeFeatures"])->name("user.admin.features.store");
+    Route::delete("user/admin-panel/features",[AdminController::class,"deleteFeatures"])->name("user.admin.features.delete");
+    Route::post("user/admin-panel/houses",[AdminController::class,"updateHouses"])->name("user.admin.houses.update");
 
 });
 

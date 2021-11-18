@@ -43,7 +43,7 @@ class House extends Model
 
     public function features(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Features::class,'houses_features',
+        return $this->belongsToMany(Feature::class,'houses_features',
             'house_id',
             'feature_id');
     }

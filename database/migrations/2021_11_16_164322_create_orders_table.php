@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->tinyText("customer_name");
             $table->tinyText("customer_email");
             $table->tinyText("customer_phone");
-            $table->string("customer_message",255);
+            $table->string("customer_message",1000);
 
             $table->unsignedBigInteger("house_id");
             $table->foreign("house_id")->references("id")->on("houses");

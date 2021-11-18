@@ -47,17 +47,17 @@ class HouseService
         $validated = Validator::make($house,[
             'id' => ["required","integer"],
             'name' => ["required","string","max:25"],
-            'description' =>["required","string"],
+            'description' =>["nullable","string"],
             'images' => ["nullable","array","max:7"],
             'features' => ["nullable","array"],
             'price' => ["required","integer"],
-            'ft_price' => ["required","integer"],
+            'ft_price' => ["nullable","integer"],
             'address' => ["required","string"],
             'bedrooms_count' => ["nullable","integer"],
             'showers_count' => ["nullable","integer"],
             'garage_count' => ["nullable","integer"],
             'floors_count' => ["nullable","integer"],
-            'founded_year' => ["required","integer"],
+            'founded_year' => ["nullable","integer"],
         ])->validate();
 
         return $this->houseRepository->save($validated);

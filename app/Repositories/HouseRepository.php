@@ -24,7 +24,7 @@ class HouseRepository
         }
 
         $house->name=$data['name'];
-        $house->description=$data['description'];
+        $house->description=$data['description'] ?? "";
         $house->price=$data['price'];
 
         $house->ft_price=$data['ft_price'];

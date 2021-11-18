@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Features;
+use App\Models\Feature;
 use App\Models\House;
 use App\Services\HouseService;
 use http\Env\Response;
@@ -26,7 +26,7 @@ class HouseController extends Controller
     }
 
     public function create(Request $request){
-        $features = \App\Models\Features::all();
+        $features = \App\Models\Feature::all();
         return view('user.houses.create',compact("features"));
     }
 
@@ -67,7 +67,7 @@ class HouseController extends Controller
 
     public function edit(HouseService $houseService,Request $request,$house_id){
         $house = House::find($house_id);
-        $features = Features::all();
+        $features = Feature::all();
         return view("user.houses.edit",compact("house","features"));
 
     }

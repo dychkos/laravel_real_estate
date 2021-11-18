@@ -18,7 +18,7 @@ class OrderController extends Controller
         return view("user.orders.index",compact("orders"));
     }
 
-    public function store(OrderService $orderService,Request $request)
+    public function store(OrderService $orderService,Request $request): \Illuminate\Http\RedirectResponse
     {
         $createdOrder = array(
           "house_id" => $request->id,
