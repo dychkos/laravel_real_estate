@@ -230,132 +230,29 @@
             <div class="comments__swiper">
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="col comment marked-title">
-                                <div class="mark mark-full"></div>
-                                <h4 class="comment__title">
-                                    “Certe, inquam, pertinax non existimant oportere exquisitis rationibus conquisitis de quo enim ipsam. Torquem detraxit hosti et quidem faciunt, ut aut.”
-                                </h4>
-                                <div class="comment__author author">
-                                    <div class="author__icon">
-                                        <img src="img/user_icon.png" alt="User Icon">
-                                    </div>
-                                    <div class="author__info">
-                                        <div class="author__name">
-                                            <span>Lara Madrigal</span>
+                        @foreach($comments as $comment)
+                            <div class="swiper-slide">
+                                <div class="col comment marked-title">
+                                    <div class="mark mark-full"></div>
+                                    <h4 class="comment__title">
+                                        “{{ \Illuminate\Support\Str::limit($comment->author_message, 160, $end='...') }}”
+                                    </h4>
+                                    <div class="comment__author author">
+                                        <div class="author__icon">
+                                            <img src="{{asset($comment->image ? "/".$comment->image->filename :"img/default_user.png")}}" alt="User Icon">
                                         </div>
-                                        <div class="author__position">
-                                            <span>Client</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="col comment marked-title">
-                                <div class="mark mark-full"></div>
-                                <h4 class="comment__title">
-                                    “Certe, inquam, pertinax non existimant oportere exquisitis rationibus conquisitis de quo enim ipsam. Torquem detraxit hosti et quidem faciunt, ut aut.”
-                                </h4>
-                                <div class="comment__author author">
-                                    <div class="author__icon">
-                                        <img src="img/user_icon.png" alt="User Icon">
-                                    </div>
-                                    <div class="author__info">
-                                        <div class="author__name">
-                                            <span>Lara Madrigal</span>
-                                        </div>
-                                        <div class="author__position">
-                                            <span>Client</span>
+                                        <div class="author__info">
+                                            <div class="author__name">
+                                                <span> {{$comment->author_name}}</span>
+                                            </div>
+                                            <div class="author__position">
+                                                <span>Client</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="col comment marked-title">
-                                <div class="mark mark-full"></div>
-                                <h4 class="comment__title">
-                                    “Certe, inquam, pertinax non existimant oportere exquisitis rationibus conquisitis de quo enim ipsam. Torquem detraxit hosti et quidem faciunt, ut aut.”
-                                </h4>
-                                <div class="comment__author author">
-                                    <div class="author__icon">
-                                        <img src="img/user_icon.png" alt="User Icon">
-                                    </div>
-                                    <div class="author__info">
-                                        <div class="author__name">
-                                            <span>Lara Madrigal</span>
-                                        </div>
-                                        <div class="author__position">
-                                            <span>Client</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="col comment marked-title">
-                                <div class="mark mark-full"></div>
-                                <h4 class="comment__title">
-                                    “Certe, inquam, pertinax non existimant oportere exquisitis rationibus conquisitis de quo enim ipsam. Torquem detraxit hosti et quidem faciunt, ut aut.”
-                                </h4>
-                                <div class="comment__author author">
-                                    <div class="author__icon">
-                                        <img src="img/user_icon.png" alt="User Icon">
-                                    </div>
-                                    <div class="author__info">
-                                        <div class="author__name">
-                                            <span>Lara Madrigal</span>
-                                        </div>
-                                        <div class="author__position">
-                                            <span>Client</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="col comment marked-title">
-                                <div class="mark mark-full"></div>
-                                <h4 class="comment__title">
-                                    “Certe, inquam, pertinax non existimant oportere exquisitis rationibus conquisitis de quo enim ipsam. Torquem detraxit hosti et quidem faciunt, ut aut.”
-                                </h4>
-                                <div class="comment__author author">
-                                    <div class="author__icon">
-                                        <img src="img/user_icon.png" alt="User Icon">
-                                    </div>
-                                    <div class="author__info">
-                                        <div class="author__name">
-                                            <span>Lara Madrigal</span>
-                                        </div>
-                                        <div class="author__position">
-                                            <span>Client</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="col comment marked-title">
-                                <div class="mark mark-full"></div>
-                                <h4 class="comment__title">
-                                    “Certe, inquam, pertinax non existimant oportere exquisitis rationibus conquisitis de quo enim ipsam. Torquem detraxit hosti et quidem faciunt, ut aut.”
-                                </h4>
-                                <div class="comment__author author">
-                                    <div class="author__icon">
-                                        <img src="img/user_icon.png" alt="User Icon">
-                                    </div>
-                                    <div class="author__info">
-                                        <div class="author__name">
-                                            <span>Lara Madrigal</span>
-                                        </div>
-                                        <div class="author__position">
-                                            <span>Client</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     <div class="swiper-button-next">
                         <img src="./img/arrow_down.svg" alt="Arrow">

@@ -26,6 +26,7 @@ class UserService
 
         $validatedUser = Validator::make($userData,[
             'name' => ["required","string","max:25"],
+            'role_id' => ["nullable","integer"],
             'email' => [
                 'required',
                 'email',
@@ -48,11 +49,10 @@ class UserService
 
         $validatedUser = Validator::make($userData,[
             'id' => ["required","integer"],
-            'name' => ["required","string","max:25"],
+            'name' => ["nullable","string","max:25"],
             'image' => ["nullable","string"],
+            'role_id' => ["nullable","integer"],
         ])->validate();
-
-
 
         return $userRepository->update($validatedUser);
     }

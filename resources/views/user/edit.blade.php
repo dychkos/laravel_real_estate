@@ -21,10 +21,10 @@
                             <div class="validation-fail">{{$message}}</div>
                             @enderror
                             <div class="input_file">
-                                <label for="file" class="file_label">
+                                <label for="file_input" class="file_label">
                                     Download profile photo
                                 </label>
-                                <input id="file" type="file" name="image" accept=".png, .jpg, .jpeg" />
+                                <input id="file_input" type="file" name="image" accept=".png, .jpg, .jpeg" />
                             </div>
                         </div>
 

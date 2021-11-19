@@ -25,7 +25,8 @@ class FeatureRepository
 
     public function delete($data){
         $feature = $this->feature;
-        $feature->destroy($data);
+
+        return $feature->destroy($data);
 
     }
 

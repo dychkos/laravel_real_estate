@@ -36,13 +36,28 @@ setTimeout(()=>{
     });
 
     let housesForm = document.querySelector("#houses_form");
+    let usersForm = document.querySelector("#users_form");
 
-    housesForm.addEventListener("submit",()=>{
-        controlledInputs.forEach(input=>{
-            if(!input.dataset.changed){
-                input.setAttribute("disabled","disabled");
-            }
+
+    if(housesForm){
+        housesForm.addEventListener("submit",(e)=>{
+            beforeFormSend(controlledInputs);
         })
-    })
+    }
+
+    if(usersForm){
+        usersForm.addEventListener("submit",(e)=>{
+            beforeFormSend(controlledInputs);
+        })
+    }
+
 },0)
 
+
+let beforeFormSend = (controlledInputs) =>{
+    controlledInputs.forEach(input=>{
+        if(!input.dataset.changed){
+            input.setAttribute("disabled","disabled");
+        }
+    })
+}

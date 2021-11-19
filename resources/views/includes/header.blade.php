@@ -11,7 +11,12 @@
                     </div>
                 </li>
 
+                <li class="nav__item"><a href="{{route("comment.create")}}">Leave feedback</a></li>
+
                 @if(\Illuminate\Support\Facades\Auth::check())
+                    @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
+                        <li class="nav__item"><a href="{{route("user.admin.index")}}">Admin panel</a></li>
+                    @endif
                     <li class="nav__item"><a href="{{route("user.orders")}}">Orders</a></li>
                     <li class="nav__item"><a href="{{route("login.logout")}}">Logout</a></li>
                 @endif

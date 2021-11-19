@@ -15,7 +15,8 @@ class HouseController extends Controller
 {
     public function index(){
         $houses = \App\Models\House::all();
-        return view('houses.index',compact('houses'));
+        $comments = \App\Models\Comment::all();
+        return view('houses.index',compact('houses',"comments"));
     }
 
     public function show($house_id){
@@ -59,7 +60,7 @@ class HouseController extends Controller
         );
 
 
-        $result = $houseService->saveHouseData($createdHouse);
+        $result = $houseService->store($createdHouse);
 
         return redirect()->route("houses.show",["id"=>$result->id]);
     }

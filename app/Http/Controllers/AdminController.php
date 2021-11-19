@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Feature;
 use App\Models\House;
 use App\Models\Order;
+use App\Models\Role;
 use App\Models\User;
+use App\Repositories\HouseRepository;
+use App\Services\CommentService;
 use App\Services\FeatureService;
 use App\Services\HouseService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -15,9 +20,27 @@ class AdminController extends Controller
     public function index(Request $request){
         $users = User::all();
         $houses = House::all();
+        $comments = Comment::all();
         $orders = Order::all();
         $features = Feature::all();
-        return view("admin.dashboard.index",compact("users","houses","orders","features"));
+        $roles = Role::all();
+        return view("admin.dashboard.index",compact("users","houses","orders","features","roles","comments"));
+    }
+
+    public function usersShow(Request $request){
+        $users = User::all();
+        $roles = Role::all();
+        return view("admin.users.index",compact("users","roles"));
+    }
+
+    public function housesShow(Request $request){
+        $houses = House::all();
+        return view("admin.houses.index",compact("houses"));
+    }
+
+    public function ordersShow(Request $request){
+        $orders = Order::all();
+        return view("admin.orders.index",compact("orders"));
     }
 
     public function storeFeatures(FeatureService $featureService,Request $request){
@@ -26,7 +49,7 @@ class AdminController extends Controller
         );
 
         $result = $featureService->store($createdFeature);
-        return redirect()->back()->with('feature_created', 'Feature successful added');;
+        return redirect()->back()->with('feature_created', 'Feature successful added');
 
 
     }
@@ -48,18 +71,26 @@ class AdminController extends Controller
 
     }
 
-    public function updateUsers(Request $request){
+    public function updateUsers(UserService $userService,Request $request){
+        $requestData = $request->all();
+
+        $usersArray = $this->processRequestData($requestData,"user");
+
+        foreach ($usersArray as $id => $items){
+            $userService->update(array_merge(["id"=>$id],$items));
+        };
+
+        return redirect()->back()->with('users_updated', 'Users successful updated');
 
     }
 
     public function updateHouses(HouseService $houseService,Request $request){
         $requestData = $request->all();
-
         $housesArray = $this->processRequestData($requestData,"house");
 
         foreach ($housesArray as $id => $items){
-            House::find($id)->update($items);
-            //$houseService->update(array_merge(["id"=>$id],$items));
+//            House::find($id)->update($items);
+            $houseService->update(array_merge(["id"=>$id],$items));
         };
 
         return redirect()->back()->with('houses_updated', 'Houses successful updated');
@@ -67,8 +98,20 @@ class AdminController extends Controller
 
     }
 
-    public function deleteComments(Request $request){
+    public function deleteComments(CommentService $commentService, Request $request){
 
+        $requestData = $request->all();
+        $deleteArray = [];
+
+        foreach($requestData as $key =>$value){
+            if (str_contains($key,"remove_comment")){
+                array_push($deleteArray,$value);
+            }
+        }
+
+        $commentService->delete($deleteArray);
+
+        return redirect()->back()->with('comment_removed', 'Comments successful removed');
     }
 
     private function processRequestData($requestData,$requestKey): array

@@ -30,6 +30,9 @@
                                 {{ session()->get('feature_removed') }}
                             </div>
                         @endif
+                        @error("features_remove_error")
+                        <div class="validation-fail text-danger">{{$message}}</div>
+                        @enderror
                         <table id="features_table" class="display" style="width:100%">
                             <thead>
                             <tr>
@@ -55,23 +58,38 @@
                 <div class="card-header">Comments</div>
                 <div class="card-body">
                     <div>
-                        <button class="btn btn-danger mb-1" id="button">Delete chosen</button>
-                        <table id="comments_table" class="display" style="width:100%">
-                            <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Remove</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($features as $feature)
+                        <form method="POST" action="{{route("user.admin.comments.delete")}}">
+                            @csrf
+                            @method("DELETE")
+                            <button class="btn btn-danger mb-1" id="button">Delete chosen</button>
+                            @if(session()->has('comment_removed'))
+                                <div class="text-success">
+                                    {{ session()->get('comment_removed') }}
+                                </div>
+                            @endif
+                            @error("comment_remove_error")
+                            <div class="validation-fail text-danger">{{$message}}</div>
+                            @enderror
+
+                            <table id="comments_table" class="display" style="width:100%">
+                                <thead>
                                 <tr>
-                                    <td>{{$feature->title}}</td>
-                                    <td><input type="checkbox" name="remove_feature" value="{{$feature->id}}"></td>
+                                    <th>Author</th>
+                                    <th>Message</th>
+                                    <th>Remove</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                @foreach($comments as $comment)
+                                    <tr>
+                                        <td>{{$comment->author_name}}</td>
+                                        <td>{{$comment->author_message}}</td>
+                                        <td><input type="checkbox" name="remove_comment" value="{{$comment->id}}"></td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -85,8 +103,15 @@
             Users List
         </div>
         <div class="card-body">
-            <button class="btn btn-success mb-1" type="submit">Save changes</button>
-            <table id="users_table" class="display" style="width:100%">
+            @if(session()->has('users_updated'))
+                <div class="text-success">
+                    {{ session()->get('users_updated') }}
+                </div>
+            @endif
+            <form method="POST" id="users_form" action="{{route("user.admin.users.update")}}">
+                @csrf
+                <button class="btn btn-success mb-1" type="submit">Save changes</button>
+                <table id="users_table" class="display" style="width:100%">
                 <thead>
                 <tr>
                     <th>Name</th>
@@ -101,19 +126,19 @@
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->created_at->diffForHumans()}}</td>
-                        <td><select size="1" id="row-1-office" name="row-1-office">
-                                <option value="User" selected="selected">
-                                    User
-                                </option>
-                                <option value="Admin">
-                                    Admin
-                                </option>
+                        <td><select  class="controlled-input" size="1" name="{{"user-".$user->id."-role_id"}}">
+                                @foreach($roles as $role)
+                                    <option value="{{$role->id}}" @if($user->role->id === $role->id) selected @endif>
+                                        {{$role->title}}
+                                    </option>
+                                @endforeach
                             </select>
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
+            </form>
         </div>
     </div>
     <div class="card mb-4">
@@ -129,8 +154,13 @@
             @endif
             <form method="POST" id="houses_form" action="{{route("user.admin.houses.update")}}">
                 @csrf
+                @error("price")
+                <div class="text-danger">{{$message}}</div>
+                @enderror
+                @error("name")
+                <div class="text-danger">{{$message}}</div>
+                @enderror
                 <button class="btn btn-success mb-1" type="submit">Save changes</button>
-
                 <table id="houses_table" class="display" style="width:100%">
                     <thead>
                     <tr>
@@ -143,8 +173,8 @@
                     <tbody>
                     @foreach($houses as $house)
                         <tr>
-                            <td><input type="text" class="controlled-input"   name="{{"house-".$house->id."-name"}}" value="{{$house->name}}"></td>
-                            <td><input type="text" class="controlled-input"    name="{{"house-".$house->id."-price"}}" value="{{$house->price}}"></td>
+                            <td><input type="text" class="controlled-input"  name="{{"house-".$house->id."-name"}}" value="{{$house->name}}"></td>
+                            <td><input type="text" class="controlled-input"  name="{{"house-".$house->id."-price"}}" value="{{$house->price}}"></td>
                             <td>{{$house->address}}</td>
                             <td>{{$house->created_at->diffForHumans()}}</td>
                         </tr>

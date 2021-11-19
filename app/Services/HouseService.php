@@ -19,7 +19,7 @@ class HouseService
     /**
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function saveHouseData($house){
+    public function store($house){
 
         $validated = Validator::make($house,[
             'name' => ["required","string","max:25"],
@@ -37,7 +37,7 @@ class HouseService
         ])->validate();
 
 
-        return $this->houseRepository->save($validated);
+        return $this->houseRepository->store($validated);
     }
 
     /**
@@ -47,7 +47,7 @@ class HouseService
 
         $validated = Validator::make($house,[
             'id' => ["required","integer"],
-            'name' => ["required","string","max:25"],
+            'name' => ["nullable","string","max:25"],
             'description' =>["nullable","string"],
             'images' => ["nullable","array","max:7"],
             'features' => ["nullable","array"],
@@ -61,7 +61,7 @@ class HouseService
             'founded_year' => ["nullable","integer"],
         ])->validate();
 
-        return $this->houseRepository->save($validated);
+        return $this->houseRepository->update($validated);
 
     }
 

@@ -1,4 +1,4 @@
-document.getElementById('file').addEventListener("change",function (e) {
+document.getElementById('file_input').addEventListener("change",function (e) {
     let files = this.files;
     let fileLabel = document.querySelector(".file_label");
     if (files.length >= 2) {

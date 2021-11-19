@@ -18,6 +18,7 @@ class UserController extends Controller
     }
 
     public function update(UserService $userService,Request $request){
+
         $image_url = "";
 
         if($file = $request->file('image')){
@@ -32,7 +33,7 @@ class UserController extends Controller
         $updatedUser = array(
             'id' => Auth::user()->id,
             'name' => $request->input('name'),
-            'image' => $image_url ?? [],
+            'image' => $image_url,
         );
 
 

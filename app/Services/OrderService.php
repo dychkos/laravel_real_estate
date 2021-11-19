@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\OrderRepository;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class OrderService
 {
@@ -25,6 +26,15 @@ class OrderService
         ])->validate();
 
         return $this->orderRepository->store($validated);
+
+    }
+
+    public function delete($data){
+        if(empty($data)){
+            throw ValidationException::withMessages(['order_remove_error' => 'No chosen fields']);
+        }else{
+            return $this->orderRepository->delete($data);
+        }
 
     }
 

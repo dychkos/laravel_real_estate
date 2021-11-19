@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RegistrationController;
@@ -36,6 +37,11 @@ Route::middleware("guest")->group(function(){
 Route::get('houses/{id}',[HouseController::class,'show'])->where('id',"[0-9]+")->name("houses.show");
 Route::post('houses/{id}',[OrderController::class,'store'])->where('id',"[0-9]+")->name("orders.store");
 
+Route::get('feedback/',[CommentController::class,'create'])->name("comment.create");
+Route::post('feedback/',[CommentController::class,'store'])->name("comment.store");
+
+
+
 Route::middleware("auth")->group(function(){
     Route::get('user/houses/create',[HouseController::class,'create'])->middleware("auth")->name("user.houses.create");
     Route::post('user/houses/create',[HouseController::class,'store'])->name("user.houses.store");
@@ -50,10 +56,19 @@ Route::middleware("auth")->group(function(){
 
     Route::get("user/orders",[OrderController::class,'index'])->name("user.orders");
 
-    Route::get("user/admin-panel",[AdminController::class,"index"])->name("user.admin.index");
-    Route::post("user/admin-panel/features",[AdminController::class,"storeFeatures"])->name("user.admin.features.store");
-    Route::delete("user/admin-panel/features",[AdminController::class,"deleteFeatures"])->name("user.admin.features.delete");
-    Route::post("user/admin-panel/houses",[AdminController::class,"updateHouses"])->name("user.admin.houses.update");
+
+    Route::middleware("admin_role")->group(function (){
+        Route::get("user/admin-panel",[AdminController::class,"index"])->name("user.admin.index");
+        Route::get("user/admin-panel/users",[AdminController::class,"usersShow"])->name("user.admin.users");
+        Route::get("user/admin-panel/houses",[AdminController::class,"housesShow"])->name("user.admin.houses");
+        Route::get("user/admin-panel/orders",[AdminController::class,"ordersShow"])->name("user.admin.orders");
+
+        Route::post("user/admin-panel/features",[AdminController::class,"storeFeatures"])->name("user.admin.features.store");
+        Route::delete("user/admin-panel/features",[AdminController::class,"deleteFeatures"])->name("user.admin.features.delete");
+        Route::delete("user/admin-panel/comments",[AdminController::class,"deleteComments"])->name("user.admin.comments.delete");
+        Route::post("user/admin-panel/houses",[AdminController::class,"updateHouses"])->name("user.admin.houses.update");
+        Route::post("user/admin-panel/users",[AdminController::class,"updateUsers"])->name("user.admin.users.update");
+    });
 
 });
 

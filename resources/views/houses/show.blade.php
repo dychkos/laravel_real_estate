@@ -190,7 +190,7 @@
                             @endif
                             <button type="submit" class="btn btn-black full-width">
                                 <div class="text-arrow">
-                                    <span class="text-arrow__item">Learn more</span>
+                                    <span class="text-arrow__item">Send order</span>
                                     <img src="{{asset("img/arrow.svg")}}" alt="Arrow Next">
                                 </div>
                             </button>
