@@ -14,14 +14,12 @@ class CommentRepository
         $this->comment = $comment;
     }
 
-    public function store($data){
-
+    public function store($data)
+    {
         $comment = $this->comment;
-
         $comment->author_name = $data["author_name"];
         $comment->author_message = $data["author_message"];
         $comment->save();
-
         $comment->image()->create(["filename"=>$data['author_image']]);
 
         $comment->refresh();
@@ -30,9 +28,9 @@ class CommentRepository
 
     }
 
-    public function delete($data){
+    public function delete($data)
+    {
         $comment = $this->comment;
-
         return $comment->destroy($data);
 
     }

@@ -98,7 +98,6 @@
                                 <div class="dropdown__backdrop" data-type="backdrop" ></div>
                                 <div class="dropdown__header">
                                     <div class="dropdown__title">
-
                                     </div>
                                     <div class="dropdown__arrow">
                                         <img src="{{asset("img/arrow_down.svg")}}" alt="Arrow down">

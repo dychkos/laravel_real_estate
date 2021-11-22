@@ -29,7 +29,8 @@ class OrderRepository
         return $order;
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         return $this->order->destroy($id);
     }
 

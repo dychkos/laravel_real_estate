@@ -143,7 +143,7 @@
                     @foreach($houses as $house)
                         <div class="col">
                             <a href={{{ url('houses/'.$house->id) }}}>
-                                <div class="card ">
+                                <div class="card">
                                     <div class="card__image">
                                         <img src="{{$house->images->first()->filename}}" alt="House Item">
                                     </div>

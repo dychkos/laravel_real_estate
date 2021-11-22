@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\House;
-use App\Models\Houses_images;
 use Illuminate\Support\Facades\Auth;
 
 class HouseRepository
@@ -15,7 +14,8 @@ class HouseRepository
         $this->house=$house;
     }
 
-    public function store($data){
+    public function store($data)
+    {
 
         $house = new $this->house;
 

@@ -27,7 +27,11 @@ class CommentService
         return $this->commentRepository->store($validated);
     }
 
-    public function delete($data){
+    /**
+     * @throws ValidationException
+     */
+    public function delete($data)
+    {
         if(empty($data)){
             throw ValidationException::withMessages(['comment_remove_error' => 'No chosen fields']);
         }else{

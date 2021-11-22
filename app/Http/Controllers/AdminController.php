@@ -8,7 +8,6 @@ use App\Models\House;
 use App\Models\Order;
 use App\Models\Role;
 use App\Models\User;
-use App\Repositories\HouseRepository;
 use App\Services\CommentService;
 use App\Services\FeatureService;
 use App\Services\HouseService;
@@ -89,7 +88,6 @@ class AdminController extends Controller
         $housesArray = $this->processRequestData($requestData,"house");
 
         foreach ($housesArray as $id => $items){
-//            House::find($id)->update($items);
             $houseService->update(array_merge(["id"=>$id],$items));
         };
 

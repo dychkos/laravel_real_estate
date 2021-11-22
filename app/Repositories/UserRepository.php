@@ -26,9 +26,10 @@ class UserRepository
         ]);
     }
 
-    public function update($userData){
+    public function update($userData)
+    {
         $user = new $this->user;
-        $user = $user->find($userData['id']);       ;
+        $user = $user->find($userData['id']);
 
 
         if (!empty($userData['role_id'])){

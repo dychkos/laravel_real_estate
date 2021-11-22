@@ -13,7 +13,8 @@ class FeatureRepository
         $this->feature = $feature;
     }
 
-    public function store($data){
+    public function store($data)
+    {
         $feature = $this->feature;
 
         $feature->title = $data["title"];
@@ -23,9 +24,9 @@ class FeatureRepository
         return $feature;
     }
 
-    public function delete($data){
+    public function delete($data)
+    {
         $feature = $this->feature;
-
         return $feature->destroy($data);
 
     }

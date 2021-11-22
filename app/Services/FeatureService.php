@@ -11,7 +11,8 @@ class FeatureService
 
     protected $featureRepository;
 
-    public function __construct(FeatureRepository $featureRepository){
+    public function __construct(FeatureRepository $featureRepository)
+    {
         $this->featureRepository = $featureRepository;
     }
 
@@ -27,13 +28,13 @@ class FeatureService
     /**
      * @throws ValidationException
      */
-    public function delete($data){
+    public function delete($data)
+    {
         if(empty($data)){
             throw ValidationException::withMessages(['features_remove_error' => 'No chosen fields']);
         }else{
             return $this->featureRepository->delete($data);
         }
-
     }
 
 }

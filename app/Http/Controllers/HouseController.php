@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Feature;
 use App\Models\House;
 use App\Services\HouseService;
-use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\URL;
 
 class HouseController extends Controller
 {
@@ -38,7 +35,6 @@ class HouseController extends Controller
     }
 
     public function store(HouseService $houseService,Request $request){
-
         if($files = $request->file('image')){
             $houseImages = $this->uploadImages($files);
         }

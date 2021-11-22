@@ -64,10 +64,11 @@ Route::middleware("auth")->group(function(){
         Route::get("user/admin-panel/orders",[AdminController::class,"ordersShow"])->name("user.admin.orders");
 
         Route::post("user/admin-panel/features",[AdminController::class,"storeFeatures"])->name("user.admin.features.store");
-        Route::delete("user/admin-panel/features",[AdminController::class,"deleteFeatures"])->name("user.admin.features.delete");
-        Route::delete("user/admin-panel/comments",[AdminController::class,"deleteComments"])->name("user.admin.comments.delete");
         Route::post("user/admin-panel/houses",[AdminController::class,"updateHouses"])->name("user.admin.houses.update");
         Route::post("user/admin-panel/users",[AdminController::class,"updateUsers"])->name("user.admin.users.update");
+
+        Route::delete("user/admin-panel/features",[AdminController::class,"deleteFeatures"])->name("user.admin.features.delete");
+        Route::delete("user/admin-panel/comments",[AdminController::class,"deleteComments"])->name("user.admin.comments.delete");
     });
 
 });

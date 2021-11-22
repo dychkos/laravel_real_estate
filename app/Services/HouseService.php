@@ -65,11 +65,13 @@ class HouseService
 
     }
 
-    public function show($house_id){
+    public function show($house_id)
+    {
         return $this->houseRepository->show($house_id);
     }
 
-    public function showForUser(){
+    public function showForUser()
+    {
         return $this->houseRepository->showForUser();
     }
 
