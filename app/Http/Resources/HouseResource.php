@@ -16,6 +16,7 @@ class HouseResource extends JsonResource
     {
         return [
             "id" => $this->id,
+            "name" => $this->name,
             "user" =>  new UserResource($this->user),
             "description" => $this->description,
             "features" =>FeatureResource::collection($this->features),
@@ -23,7 +24,10 @@ class HouseResource extends JsonResource
             "price" => $this->price,
             "ft_price" => $this->ft_price,
             "address" => $this->address,
-            "name" => $this->name,
+            "bedrooms_count" => $this->bedrooms_count,
+            "showers_count" => $this->showers_count,
+            "garage_count" => $this->garage_count,
+            "floors_count" => $this->floors_count
         ];
     }
 }
