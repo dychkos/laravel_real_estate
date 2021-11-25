@@ -20,7 +20,7 @@ class CommentRepository
         $comment->author_name = $data["author_name"];
         $comment->author_message = $data["author_message"];
         $comment->save();
-        $comment->image()->create(["filename"=>$data['author_image']]);
+        $comment->image()->create($data['author_image'][0]);
 
         $comment->refresh();
 

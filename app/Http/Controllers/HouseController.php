@@ -36,7 +36,7 @@ class HouseController extends Controller
 
     public function store(HouseService $houseService,Request $request){
         if($files = $request->file('image')){
-            $houseImages = $this->uploadImages($files);
+            $houseImages = upload_image($files,"houses");
         }
 
         $createdHouse = array(
@@ -75,7 +75,7 @@ class HouseController extends Controller
     public function update(HouseService $houseService, Request $request){
 
         if($files = $request->file('image')){
-            $houseImages = $this->uploadImages($files);
+            $houseImages = upload_image($files,"houses");
         }
 
         $updatedHouse = array(
@@ -98,23 +98,6 @@ class HouseController extends Controller
         $result = $houseService->update($updatedHouse);
 
         return redirect()->route("user.houses.show",["id"=>$result->id]);
-    }
-
-    private function uploadImages($files): array
-    {
-        $houseImages = array();
-
-        foreach($files as $file){
-            $image_name = md5(rand(1000,10000));
-            $ext = strtolower($file->getClientOriginalExtension());
-            $image_full_name = $image_name.'.'.$ext;
-            $uploade_path = "uploads/houses/";
-            $image_url = $uploade_path.$image_full_name;
-            $file->move($uploade_path,$image_full_name);
-            array_push($houseImages,["filename" => $image_url]);
-        }
-
-        return $houseImages;
     }
 
 }

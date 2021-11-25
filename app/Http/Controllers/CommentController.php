@@ -14,15 +14,10 @@ class CommentController extends Controller
     }
 
     public function store(CommentService $commentService,Request $request){
-        $image_url = "";
+        $image_url = [];
 
         if($file = $request->file('image')){
-            $image_name = md5(rand(1000,10000));
-            $ext = strtolower($file->getClientOriginalExtension());
-            $image_full_name = $image_name.'.'.$ext;
-            $uploade_path = "uploads/comments/";
-            $image_url = $uploade_path.$image_full_name;
-            $file->move($uploade_path,$image_full_name);
+            $image_url = upload_image(array($file),"comments");
         }
 
         $commentData = [

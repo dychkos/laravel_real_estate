@@ -20,10 +20,10 @@ class CreateHousesTable extends Migration
             $table->tinyText('price');
             $table->tinyText('ft_price');
             $table->tinyText('address');
-            $table->integer('bedrooms_count');
-            $table->integer('showers_count');
-            $table->integer('floors_count');
-            $table->integer('garage_count');
+            $table->integer('bedrooms_count')->default(0);
+            $table->integer('showers_count')->default(0);
+            $table->integer('floors_count')->default(0);
+            $table->integer('garage_count')->default(0);
             $table->integer('founded_year');
             $table->timestamps();
         });

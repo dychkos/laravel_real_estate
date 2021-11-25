@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Nette\Schema\ValidationException;
 
 class LoginController extends Controller
 {
@@ -13,23 +15,16 @@ class LoginController extends Controller
     }
 
 
-    public function store(Request $request): \Illuminate\Http\RedirectResponse
+    public function store(UserService $userService,Request $request): \Illuminate\Http\RedirectResponse
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required', "min:6"],
-        ]);
-
-        $remember = $request->input("remember_me");
-
-        if (Auth::attempt($credentials, $remember)) {
+        try {
+            $userService->login($request->all());
             $request->session()->regenerate();
-            return redirect()->route('user.houses');
+        }catch (ValidationException $exception){
+            return back();
         }
+        return redirect()->route('user.houses');
 
-        return back()->withErrors([
-            'email' => 'Opps, you are not registered.',
-        ]);
     }
 
     public function logout(Request $request)

@@ -19,15 +19,10 @@ class UserController extends Controller
 
     public function update(UserService $userService,Request $request){
 
-        $image_url = "";
+        $image_url = [];
 
         if($file = $request->file('image')){
-            $image_name = md5(rand(1000,10000));
-                $ext = strtolower($file->getClientOriginalExtension());
-                $image_full_name = $image_name.'.'.$ext;
-                $uploade_path = "uploads/users/";
-                $image_url = $uploade_path.$image_full_name;
-                $file->move($uploade_path,$image_full_name);
+            $image_url = upload_image(array($file),"users");
         }
 
         $updatedUser = array(
@@ -35,8 +30,6 @@ class UserController extends Controller
             'name' => $request->input('name'),
             'image' => $image_url,
         );
-
-
 
         $result = $userService->update($updatedUser);
 

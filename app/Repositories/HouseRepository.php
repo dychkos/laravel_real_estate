@@ -18,17 +18,16 @@ class HouseRepository
     {
 
         $house = new $this->house;
-
         $house->name=$data['name'] ;
         $house->price=$data['price'];
         $house->address=$data['address'];
         $house->description=$data['description'];
         $house->ft_price=$data['ft_price'];
-        $house->bedrooms_count=$data['bedrooms_count'];
-        $house->showers_count=$data['showers_count'] ;
-        $house->bedrooms_count=$data['bedrooms_count'];
-        $house->floors_count=$data['floors_count'];
-        $house->garage_count=$data['garage_count'];
+        $house->bedrooms_count=$data['bedrooms_count'] ?? 0;
+        $house->showers_count=$data['showers_count'] ?? 0;
+        $house->bedrooms_count=$data['bedrooms_count'] ?? 0;
+        $house->floors_count=$data['floors_count'] ?? 0;
+        $house->garage_count=$data['garage_count'] ?? 0;
         $house->founded_year=$data['founded_year'];
 
         $user_id = Auth::user()->id;
@@ -56,6 +55,8 @@ class HouseRepository
         $house = new $this->house;
         $house = $house->find($data['id']);
 
+
+
         if(!empty($data["images"])){
             $house->images()->delete();
             $house->images()->createMany($data['images']);
@@ -79,6 +80,11 @@ class HouseRepository
         $house = new $this->house;
         $user_id = Auth::user()->id;
         return $house->where("user_id",$user_id)->get();
+    }
+
+    public function delete($house_id){
+        $house = new $this->house;
+        return $house->destroy($house_id);
     }
 
 }

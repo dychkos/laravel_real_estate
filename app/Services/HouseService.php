@@ -70,9 +70,15 @@ class HouseService
         return $this->houseRepository->show($house_id);
     }
 
+
     public function showForUser()
     {
         return $this->houseRepository->showForUser();
+    }
+
+    public function delete($house_id)
+    {
+        return $this->houseRepository->delete($house_id);
     }
 
 }

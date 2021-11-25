@@ -21,7 +21,7 @@ class CommentService
         $validated = Validator::make($data,[
             "author_name"=>["required","string","min:3","max:25"],
             "author_message"=>["required","string","max:255"],
-            "author_image"=>["required","string"]
+            "author_image"=>["required","array"]
         ])->validate();
 
         return $this->commentRepository->store($validated);
