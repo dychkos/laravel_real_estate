@@ -14,6 +14,11 @@ class CommentResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            "id"=>$this->id,
+            "author_name"=>$this->author_name,
+            "author_message"=>$this->author_message,
+            "image"=>new ImageResource($this->image)
+        ];
     }
 }

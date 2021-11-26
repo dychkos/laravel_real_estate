@@ -13,7 +13,7 @@
                                     <h4>You can add new house to sale</h4>
                                 </div>
                                 <div class="card__footer">
-                                    <button class="btn btn-yellow ">
+                                    <button class="btn btn-yellow">
                                         <a href="{{route("user.houses.create")}}">
                                             <div class="text-arrow">
                                                 <span class="text-arrow__item">Sale house </span>

@@ -53,6 +53,7 @@ class HouseRepository
     public function update($data)
     {
         $house = new $this->house;
+
         $house = $house->find($data['id']);
 
 

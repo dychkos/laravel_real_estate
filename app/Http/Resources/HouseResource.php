@@ -21,13 +21,14 @@ class HouseResource extends JsonResource
             "description" => $this->description,
             "features" =>FeatureResource::collection($this->features),
             "images" =>ImageResource::collection($this->images),
-            "price" => $this->price,
-            "ft_price" => $this->ft_price,
+            "price" => (int)$this->price,
+            "ft_price" => (int)$this->ft_price,
             "address" => $this->address,
             "bedrooms_count" => $this->bedrooms_count,
             "showers_count" => $this->showers_count,
             "garage_count" => $this->garage_count,
-            "floors_count" => $this->floors_count
+            "floors_count" => $this->floors_count,
+            "founded_year" => $this->founded_year
         ];
     }
 }
