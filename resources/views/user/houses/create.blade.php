@@ -6,20 +6,20 @@
         <div class="row">
             <div class="col-md-12 order-md-1">
                 @if($errors->any())
-                    <h4 class="validation-fail">Oop, you doesn`t fill all required fields</h4>
+                    <h4 class="validation-fail"> {{$errors->first()}}</h4>
                 @endif
                 <h4 class="mb-3">House info</h4>
-                <form class="needs-validation" method="post" id="create_post" enctype='multipart/form-data'>
+                <form  method="post" id="create_post" enctype='multipart/form-data'>
                     @csrf
                     <div class="row">
-                        <div class="col-6 mb-3">
+                        <div class="col-6">
                             <label for="house_title">House title</label>
                             <input type="text" class="form-control" id="house_title" value="{{old("house_title")}}" name="house_title">
                             @error("name")
                             <div class="validation-fail">{{$message}}</div>
                             @enderror
                         </div>
-                        <div class="col-6 mb-3">
+                        <div class="col-6 ">
                             <label for="founded_year">Founded year</label>
                             <input type="number"  class="form-control" id="founded_year" value="{{old("founded_year")}}" name="founded_year" >
                             @error("founded_year")

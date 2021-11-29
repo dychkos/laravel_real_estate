@@ -6,29 +6,26 @@ use App\Models\Feature;
 
 class FeatureRepository
 {
-    protected $feature;
+    protected $model;
 
-    public function __construct(Feature $feature)
+    public function __construct(Feature $model)
     {
-        $this->feature = $feature;
+        $this->model = $model;
     }
 
     public function store($data)
     {
-        $feature = $this->feature;
-
-        $feature->title = $data["title"];
-        $feature->save();
-
-        $feature->fresh();
-        return $feature;
+        $model = $this->model::create([
+            "title" =>  $data["title"]
+        ]);
+        $model->fresh();
+        return $model;
     }
 
     public function delete($data)
     {
-        $feature = $this->feature;
-        return $feature->destroy($data);
-
+        $model = $this->model;
+        return $model->destroy($data);
     }
 
 }

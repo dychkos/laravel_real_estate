@@ -7,31 +7,31 @@ use App\Models\Comment;
 class CommentRepository
 {
 
-    protected $comment;
+    protected $model;
 
-    public function __construct(Comment $comment)
+    public function __construct(Comment $model)
     {
-        $this->comment = $comment;
+        $this->model = $model;
     }
 
     public function store($data)
     {
-        $comment = $this->comment;
-        $comment->author_name = $data["author_name"];
-        $comment->author_message = $data["author_message"];
-        $comment->save();
-        $comment->image()->create($data['author_image'][0]);
+        $model = $this->model::create([
+            'author_name' => $data["author_name"],
+            'author_message' => $data["author_message"],
 
-        $comment->refresh();
+        ]);
+        $model->image()->create($data['author_image'][0]);
+        $model->refresh();
 
-        return $comment;
+        return $model;
 
     }
 
     public function delete($data)
     {
-        $comment = $this->comment;
-        return $comment->destroy($data);
+        $model = $this->model;
+        return $model->destroy($data);
 
     }
 

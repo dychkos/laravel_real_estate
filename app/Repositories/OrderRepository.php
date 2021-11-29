@@ -7,31 +7,30 @@ use App\Models\Order;
 class OrderRepository
 {
 
-    protected $order;
+    protected $model;
 
-    public function __construct(Order $order)
+    public function __construct(Order $model)
     {
-        $this->order = $order;
+        $this->model = $model;
     }
 
     public function store($data)
     {
-        $order  = $this->order;
+        $model  = $this->model::create([
+            'house_id'=>$data["house_id"],
+            'customer_name'=>$data["customer_name"],
+            'customer_phone'=>$data["customer_phone"],
+            'customer_email'=>$data["customer_email"],
+            'customer_message'=>$data["customer_message"],
+        ]);
 
-        $order->house_id = $data["house_id"];
-        $order->customer_name = $data["customer_name"];
-        $order->customer_phone = $data["customer_phone"];
-        $order->customer_email = $data["customer_email"];
-        $order->customer_message = $data["customer_message"];
-        $order->save();
-        $order->fresh();
-
-        return $order;
+        $model->fresh();
+        return $model;
     }
 
     public function delete($id)
     {
-        return $this->order->destroy($id);
+        return $this->model->destroy($id);
     }
 
 }

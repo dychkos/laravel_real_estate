@@ -7,85 +7,78 @@ use Illuminate\Support\Facades\Auth;
 
 class HouseRepository
 {
-    protected $house;
+    protected $model;
 
-    public function __construct(House $house)
+    public function __construct(House $model)
     {
-        $this->house=$house;
+        $this->model=$model;
     }
 
     public function store($data)
     {
 
-        $house = new $this->house;
-        $house->name=$data['name'] ;
-        $house->price=$data['price'];
-        $house->address=$data['address'];
-        $house->description=$data['description'];
-        $house->ft_price=$data['ft_price'];
-        $house->bedrooms_count=$data['bedrooms_count'] ?? 0;
-        $house->showers_count=$data['showers_count'] ?? 0;
-        $house->bedrooms_count=$data['bedrooms_count'] ?? 0;
-        $house->floors_count=$data['floors_count'] ?? 0;
-        $house->garage_count=$data['garage_count'] ?? 0;
-        $house->founded_year=$data['founded_year'];
+        $model = $this->model::create([
+            'user_id'=>Auth::user()->id,
+            'name'=>$data['name'],
+            'price'=>$data['price'],
+            'address'=>$data['address'],
+            'ft_price'=>$data['ft_price'],
+            'description'=>$data['description'],
+            'founded_year'=>$data['founded_year'],
+            'bedrooms_count'=>$data['bedrooms_count'],
+            'showers_count'=>$data['showers_count'],
+            'floors_count'=>$data['floors_count'],
+            'garage_count'=>$data['garage_count']
+        ]);
 
-        $user_id = Auth::user()->id;
-        $house->user_id = $user_id;
-
-        $house->save();
 
         if(!empty($data["images"])){
-            $house->images()->delete();
-            $house->images()->createMany($data['images']);
+            $model->images()->delete();
+            $model->images()->createMany($data['images']);
         }
 
         if(!empty($data["features"])){
-            $house->features()->sync($data['features']);
+            $model->features()->sync($data['features']);
         }
 
-        $house->fresh();
+        $model->fresh();
 
-        return $house ;
+        return $model ;
 
     }
 
     public function update($data)
     {
-        $house = new $this->house;
-
-        $house = $house->find($data['id']);
-
-
+        $model = $this->model::find($data['id']);
 
         if(!empty($data["images"])){
-            $house->images()->delete();
-            $house->images()->createMany($data['images']);
+            $model->images()->delete();
+            $model->images()->createMany($data['images']);
         }
 
         if(!empty($data["features"])){
-            $house->features()->sync($data['features']);
+            $model->features()->sync($data['features']);
         }
 
-        $house->update($data);
+        $model->update($data);
 
-        return $house->fresh();
+        return $model->fresh();
     }
 
-    public function show($house_id){
-        $house = new $this->house;
-        return $house->find($house_id);
+    public function show($model_id){
+        $model = new $this->model;
+        return $model->find($model_id);
     }
 
     public function showForUser(){
-        $house = new $this->house;
+        $model = new $this->model;
         $user_id = Auth::user()->id;
-        return $house->where("user_id",$user_id)->get();
+        return $model->where("user_id",$user_id)->get();
     }
 
     public function delete($house_id){
-        $house = new $this->house;
-        return $house->destroy($house_id);
+        $model = new $this->model;
+        return $model->destroy($house_id);
     }
 
 }

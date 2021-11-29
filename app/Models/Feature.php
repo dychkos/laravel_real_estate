@@ -9,6 +9,10 @@ class Feature extends Model
 {
     use HasFactory;
 
+    protected $fillable =[
+        "title"
+    ];
+
     public function houses(){
         return $this->belongsToMany(House::class,'houses_features',
             'feature_id',

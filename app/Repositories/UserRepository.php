@@ -9,17 +9,17 @@ use Illuminate\Validation\ValidationException;
 
 class UserRepository
 {
-    private $user;
+    private $model;
 
-    public function __construct(User $user)
+    public function __construct(User $model)
     {
-        $this->user = $user;
+        $this->model = $model;
     }
 
     public function store($userData)
     {
-        $user = new $this->user;
-        return $user->create([
+        $model = new $this->model;
+        return $model->create([
             'name' => $userData['name'],
             'role_id' => $userData['role_id'] ?? 1,
             'email' => $userData['email'],
@@ -31,13 +31,13 @@ class UserRepository
      * @throws ValidationException
      */
     public function login($credentials,$remember){
-        $user = $this->user->where('email',$credentials['email'])->first();
-        if($user){
+        $model = $this->model->where('email',$credentials['email'])->first();
+        if($model){
             if(!auth()->attempt($credentials,$remember)){
                 throw ValidationException::withMessages(['email' => "Invalid email or password"]);
             }
             else{
-                return $user;
+                return $model;
             }
         }
         else{
@@ -47,33 +47,33 @@ class UserRepository
 
     public function update($userData)
     {
-        $user = new $this->user;
-        $user = $user->find($userData['id']);
+        $model = new $this->model;
+        $model = $model->find($userData['id']);
 
         if (!empty($userData['role_id'])){
-            $user->role_id = $userData['role_id'];
+            $model->role_id = $userData['role_id'];
         }
 
         if(!empty($userData["image"])){
-            if($user->image()->get()->isNotEmpty()){
-                $user->image()->delete();
+            if($model->image()->get()->isNotEmpty()){
+                $model->image()->delete();
             }
-            $user->image()->create($userData['image'][0]);
+            $model->image()->create($userData['image'][0]);
         }
 
-        $user->update($userData);
-        return $user->fresh();
+        $model->update($userData);
+        return $model->fresh();
     }
 
     public function checkEmailExists($email): bool
     {
-        $user = new $this->user;
-        return $user->whereEmail($email)->count() > 0;
+        $model = new $this->model;
+        return $model->whereEmail($email)->count() > 0;
     }
 
     public function delete($user_id){
-        $user = new $this->user;
-        return $user->destroy($user_id);
+        $model = new $this->model;
+        return $model->destroy($user_id);
     }
 
 }

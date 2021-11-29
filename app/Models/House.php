@@ -14,8 +14,9 @@ class House extends Model
     protected $table = 'houses';
 
     protected $fillable = [
+        'user_id',
         'name',
-        'description'   ,
+        'description',
         'price',
         'ft_price' ,
         'address' ,
