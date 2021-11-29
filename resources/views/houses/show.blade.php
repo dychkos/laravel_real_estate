@@ -30,14 +30,14 @@
                         <div class="house__preview">
                             <div class="row">
                                 <div  class="house__photo house__photo_big">
-                                    <img id="house-preview" src="{{asset($house->images->first()->filename)}}" alt="House Photo">
+                                    <img id="house-preview" src="{{asset('storage/'.$house->images->first()->filename)}}" alt="House Photo">
                                 </div>
                             </div>
                             <div class="row">
                                 @foreach($house->images as $img)
                                     <div class="col">
                                         <div class="house__photo house__photo_small">
-                                            <img src="{{asset($img->filename)}}" data-photo alt="House Photo">
+                                            <img src="{{asset('storage/'.$img->filename)}}" data-photo alt="House Photo">
                                         </div>
                                     </div>
                                 @endforeach
@@ -117,7 +117,7 @@
                             <div class="card__title author">
                                 @if($user->image)
                                     <div class="author__icon">
-                                        <img src="{{asset('/'.$user->image->filename)}}" width="50px" height="50px" alt="User Icon">
+                                        <img src="{{asset('storage/'.$user->image->filename)}}" width="50px" height="50px" alt="User Icon">
                                     </div>
                                 @endif
                                 <div class="author__info">
@@ -146,7 +146,7 @@
                         <div class="house__order-author author">
                             @if($house->user->image)
                             <div class="author__icon">
-                                <img src="{{asset("/".$house->user->image->filename)}}" alt="User Icon">
+                                <img src="{{asset("storage/".$house->user->image->filename)}}" alt="User Icon">
                             </div>
                             @endif
                             <div class="author__info">
@@ -218,7 +218,7 @@
                                 <a href={{{ url('houses/'.$similar->id) }}}>
                                     <div class="card ">
                                         <div class="card__image">
-                                            <img src="{{asset("/".$similar->images->first()->filename)}}" alt="House Item">
+                                            <img src="{{asset("storage/".$similar->images->first()->filename)}}" alt="House Item">
                                         </div>
                                         <div class="card__title">
                                             <h4>

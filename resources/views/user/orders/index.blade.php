@@ -19,7 +19,7 @@
                                 <div class="row">
                                     <div class="order__items row row-cols-1 row-cols-xl-5">
                                         <div class="order__item order__item_mix">
-                                            <img src="{{asset("/".$order->house->images()->first()->filename)}}" alt="Order">
+                                            <img src="{{asset("storage/".$order->house->images()->first()->filename)}}" alt="Order">
                                             <span>{{$order->customer_name}}</span>
                                         </div>
                                         <div class="order__item"><span>{{$order->customer_email}}</span></div>

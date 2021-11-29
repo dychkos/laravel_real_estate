@@ -27,7 +27,7 @@
                                 <a href={{{ route('user.houses.show',$house->id) }}}>
                                     <div class="houses__house card">
                                     <div class="card__image">
-                                        <img src="{{asset("/".$house->images->first()->filename)}}" alt="House Item">
+                                        <img src="{{asset("storage/".$house->images->first()->filename)}}" alt="House Item">
                                     </div>
                                     <div class="card__title">
                                         <h4>
@@ -78,7 +78,7 @@
                         <div class="card__title author">
                             @if($user->image)
                                 <div class="author__icon">
-                                    <img src="{{asset('/'.$user->image->filename)}}" width="50px" height="50px" alt="User Icon">
+                                    <img src="{{asset('storage/'.$user->image->filename)}}" width="50px" height="50px" alt="User Icon">
                                 </div>
                             @endif
                             <div class="author__info">

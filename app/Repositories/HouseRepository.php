@@ -18,17 +18,17 @@ class HouseRepository
     {
 
         $model = $this->model::create([
-            'user_id'=>Auth::user()->id,
-            'name'=>$data['name'],
-            'price'=>$data['price'],
-            'address'=>$data['address'],
-            'ft_price'=>$data['ft_price'],
-            'description'=>$data['description'],
-            'founded_year'=>$data['founded_year'],
-            'bedrooms_count'=>$data['bedrooms_count'],
-            'showers_count'=>$data['showers_count'],
-            'floors_count'=>$data['floors_count'],
-            'garage_count'=>$data['garage_count']
+            'user_id' => Auth::user()->id,
+            'name' => $data['name'],
+            'price' => $data['price'],
+            'address' => $data['address'],
+            'ft_price' => $data['ft_price'],
+            'description' => $data['description'],
+            'founded_year' => $data['founded_year'],
+            'bedrooms_count' => $data['bedrooms_count'],
+            'showers_count' => $data['showers_count'],
+            'floors_count' => $data['floors_count'],
+            'garage_count' => $data['garage_count']
         ]);
 
 

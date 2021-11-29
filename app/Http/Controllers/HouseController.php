@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use App\Models\Feature;
 use App\Models\House;
 use App\Services\HouseService;
@@ -36,7 +37,7 @@ class HouseController extends Controller
 
     public function store(HouseService $houseService,Request $request){
         if($files = $request->file('image')){
-            $houseImages = upload_image($files,"houses");
+            $houseImages = Helper::upload_image($files,"houses");
         }
 
         $createdHouse = array(
@@ -75,7 +76,7 @@ class HouseController extends Controller
     public function update(HouseService $houseService, Request $request){
 
         if($files = $request->file('image')){
-            $houseImages = upload_image($files,"houses");
+            $houseImages = Helper::upload_image($files,"houses");
         }
 
         $updatedHouse = array(

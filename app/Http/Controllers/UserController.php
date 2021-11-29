@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,7 @@ class UserController extends Controller
         $image_url = [];
 
         if($file = $request->file('image')){
-            $image_url = upload_image(array($file),"users");
+            $image_url = Helper::upload_image(array($file),"users");
         }
 
         $updatedUser = array(

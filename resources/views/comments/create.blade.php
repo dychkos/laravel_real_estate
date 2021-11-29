@@ -6,14 +6,14 @@
         <div class="row">
             <div class="col-md-12 order-md-1">
                 @if($errors->any())
-                    <h4 class="validation-fail">Oop, you doesn`t fill all required fields</h4>
+                    <h4 class="validation-fail">{{$errors->first()}}</h4>
                 @endif
                 <form class="needs-validation" method="post" id="create_post" enctype='multipart/form-data'>
                     @csrf
                     <div class="row">
                         <div class="col mb-3">
                             <label for="house_title">Your name</label>
-                            <input type="text" class="form-control" id="house_title" value="{{\Illuminate\Support\Facades\Auth::user()->name ?? ""}}" name="author_name">
+                            <input type="text" class="form-control" id="house_title" value="{{$user->name ?? ""}}" name="author_name">
                             @error("author_name")
                             <div class="validation-fail">{{$message}}</div>
                             @enderror
@@ -31,21 +31,20 @@
                         <div class="validation-fail">{{$message}}</div>
                         @enderror
                     </div>
-                        <div class="col mb-4">
+                    <div class="col mb-4">
                             <h5 class="mb-3">Please, upload your photo</h5>
                             <div class="col mb-3">
                                 <div class="input_file">
                                     <label for="file_input" class="file_label">
                                         Choose photo
                                     </label>
-                                    <input type="file" id="file_input" name="image"  accept="image/png, image/gif, image/jpeg" />
+                                    <input type="file" id="file_input" name="image" value="{{$user->image}}" accept="image/png, image/gif, image/jpeg" />
                                     @error("author_image")
                                     <div class="validation-fail">{{$message}}</div>
                                     @enderror
                                 </div>
                             </div>
-                        </div>
-
+                    </div>
                     <button class="btn btn-yellow" type="submit">
                         <div class="text-arrow">
                             <span class="text-arrow__item">Next</span>

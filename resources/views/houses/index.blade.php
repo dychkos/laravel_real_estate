@@ -145,7 +145,7 @@
                             <a href={{{ url('houses/'.$house->id) }}}>
                                 <div class="card">
                                     <div class="card__image">
-                                        <img src="{{$house->images->first()->filename}}" alt="House Item">
+                                        <img src="{{asset("storage/".$house->images->first()->filename)}}" alt="House Item">
                                     </div>
                                     <div class="card__title">
                                         <h4>
@@ -239,7 +239,7 @@
                                     </h4>
                                     <div class="comment__author author">
                                         <div class="author__icon">
-                                            <img src="{{asset($comment->image ? "/".$comment->image->filename :"img/default_user.png")}}" alt="User Icon">
+                                            <img src="{{asset($comment->image ? "storage/".$comment->image->filename :"img/default_user.png")}}" alt="User Icon">
                                         </div>
                                         <div class="author__info">
                                             <div class="author__name">
