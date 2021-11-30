@@ -11,7 +11,7 @@ class Helper
         $images = array();
 
         foreach($files as $file){
-            $image_url = Storage::putFile('images',$file,'public');//
+            $image_url = Storage::putFile('images',$file,'public');
             array_push($images,["filename" => $image_url]);
         }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CommentResource;
 use App\Models\Comment;
@@ -41,7 +42,7 @@ class CommentController extends Controller
         $image_url = [];
 
         if($file = $request->file('image')){
-            $image_url = upload_image(array($file),"comments");
+            $image_url = Helper::upload_image(array($file),"comments");
         }
 
         $commentData = [

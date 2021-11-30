@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label for="house_title">Your name</label>
-                            <input type="text" class="form-control" id="house_title" value="{{$user->name ?? ""}}" name="author_name">
+                            <input type="text" class="form-control" value="{{$user->name ?? ""}}" name="author_name">
                             @error("author_name")
                             <div class="validation-fail">{{$message}}</div>
                             @enderror
@@ -38,7 +38,7 @@
                                     <label for="file_input" class="file_label">
                                         Choose photo
                                     </label>
-                                    <input type="file" id="file_input" name="image" value="{{$user->image}}" accept="image/png, image/gif, image/jpeg" />
+                                    <input type="file" id="file_input" name="image" accept="image/png, image/gif, image/jpeg" />
                                     @error("author_image")
                                     <div class="validation-fail">{{$message}}</div>
                                     @enderror

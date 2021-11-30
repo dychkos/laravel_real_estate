@@ -42,4 +42,20 @@ class AuthController extends Controller
         ]);
     }
 
+    public function checkAuth(Request $request){
+        $isAuth = Auth::guard('api')->check();
+        if(!$isAuth){
+            return $this->sendError("Token is not valid",[],401);
+        }
+        $user = Auth::guard('api')->user();
+        return response()->json([
+            'auth' => $isAuth,
+            'user' => new UserResource($user),
+        ]);
+
+    }
+
+
+
+
 }

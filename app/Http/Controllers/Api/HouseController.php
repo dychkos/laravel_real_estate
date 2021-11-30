@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\HouseResource;
 use App\Models\Comment;
@@ -132,7 +133,7 @@ class HouseController extends Controller
     {
         $house_id = $house->id;
         if($files = $request->file('image')){
-            $houseImages = upload_image($files,"houses");
+            $houseImages = Helper::upload_image($files,"houses");
         }
 
         $updatedHouse = array(

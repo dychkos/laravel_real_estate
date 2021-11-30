@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\Comment;
@@ -56,7 +57,7 @@ class UserController extends Controller
         $image_url = [];
 
         if($file = $request->file('image')){
-            $image_url = upload_image(array($file),"users");
+            $image_url = Helper::upload_image(array($file),"users");
         }
 
         $updatedUser = array(
@@ -71,10 +72,7 @@ class UserController extends Controller
             $message = $exception->getMessage();
             return $this->sendError($message,$exception->errors(),$exception->status);
         }
-
         return $this->sendResponse($result,"Updated successful");
-
-
     }
 
     /**

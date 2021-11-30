@@ -21,8 +21,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'auth'], function ($router) {
+Route::group(['prefix' => 'auth'], function () {
     Route::post('/register', [AuthController::class, 'register'])->name('register.user');
+    Route::get('/check' , [AuthController::class,'checkAuth']);
     Route::post('/login', [AuthController::class, 'login'])->name('login.user');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout.user')->middleware("auth:api");
 });
@@ -31,7 +32,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::apiResource('houses', HouseController::class,['except' =>  ['index', 'show']]);
     Route::get('user/houses', [HouseController::class,'showForUser']);
     Route::apiResource('orders', OrderController::class);
-    Route::apiResource('comments', CommentController::class,['except' => ['index', 'show']]);
+    Route::apiResource('comments', CommentController::class,['except' => ['index', 'show' ,'store']]);
     Route::apiResource('features', FeatureController::class);
     Route::apiResource('users', UserController::class,["except" => ["store"]]);
 });
@@ -40,6 +41,7 @@ Route::get('houses', [HouseController::class,"index"]);
 Route::get('houses/{house}', [HouseController::class,"show"]);
 
 Route::get('comments', [CommentController::class,"index"]);
+Route::post('comments', [CommentController::class,"store"]);
 Route::get('comments/{comment}', [CommentController::class,"show"]);
 
 Route::get('houses/similar/{id}', [HouseController::class,'showSimilar']);
