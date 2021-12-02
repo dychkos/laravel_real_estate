@@ -22,10 +22,14 @@ class OrderController extends Controller
     public function index()
     {
         try {
-            $orders = Auth::user()->orders->orderBy('created_at',"DESC")->get();
+            if(isset(Auth::user()->orders)){
+                $orders = Auth::user()->orders->orderBy('created_at',"DESC")->get();
+            }else{
+                throw new NotFoundHttpException;
+            }
         }catch (NotFoundHttpException $exception){
-            $message = $exception->getMessage();
-            return $this->sendError($message,$exception->errors(),$exception->status);
+            $message = "Not found";
+            return $this->sendError($message,[],400);
         }
         return $this->sendResponse(OrderResource::collection($orders),'Retrieved successfully');
     }

@@ -41,8 +41,9 @@ class CommentController extends Controller
     {
         $image_url = [];
 
-        if($file = $request->file('image')){
-            $image_url = Helper::upload_image(array($file),"comments");
+
+        if($file = $request->file('author_image')){
+            $image_url = Helper::upload_image(array($file));
         }
 
         $commentData = [
@@ -58,7 +59,7 @@ class CommentController extends Controller
             return $this->sendError($message,$exception->errors(),$exception->status);
         }
 
-        return $this->sendResponse($result,"Created successful");
+        return $this->sendResponse(new CommentResource($result),"Created successful");
 
     }
 

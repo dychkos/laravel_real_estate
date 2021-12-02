@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Helper
 {
-    public static function upload_image($files,$path)
+    public static function upload_image($files)
     {
         $images = array();
 

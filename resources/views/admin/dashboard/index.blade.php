@@ -84,7 +84,8 @@
                                     <tr>
                                         <td>{{$comment->author_name}}</td>
                                         <td>{{$comment->author_message}}</td>
-                                        <td><input type="checkbox" name="remove_comment" value="{{$comment->id}}"></td>
+                                        <td><input type="checkbox" name="{{"remove_comment
+  import 'react-toastify/dist/ReactToastify.css';_".$comment->id}}"value="{{$comment->id}}"></td>
                                     </tr>
                                 @endforeach
                                 </tbody>

@@ -52,7 +52,7 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, User $user,UserService $userService)
+    public function update(Request $request, UserService $userService)
     {
         $image_url = [];
 
@@ -72,7 +72,7 @@ class UserController extends Controller
             $message = $exception->getMessage();
             return $this->sendError($message,$exception->errors(),$exception->status);
         }
-        return $this->sendResponse($result,"Updated successful");
+        return $this->sendResponse(new UserResource($result),"Updated successful");
     }
 
     /**

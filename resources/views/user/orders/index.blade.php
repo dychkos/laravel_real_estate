@@ -5,7 +5,7 @@
     <section class="orders">
         <div class="container">
             @if(empty($orders))
-                                <div class="order order_empty card">
+                <div class="order order_empty card">
                     <div class="order__image" >
                         <img src="{{asset("img/empty_order.png")}}" alt="Empty order">
                         <h4>Opps, you order list is empty</h4>

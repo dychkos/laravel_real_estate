@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\HouseResource;
-use App\Models\Comment;
 use App\Models\House;
 use App\Services\HouseService;
 use Illuminate\Http\Request;
@@ -36,8 +35,9 @@ class HouseController extends Controller
     public function store(HouseService $houseService,Request $request)
     {
         if($files = $request->file('image')){
-            $houseImages = upload_image($files,"houses");
+            $houseImages = Helper::upload_image($files,"houses");
         }
+
 
         $createdHouse = array(
             'user_id' => Auth::user()->id,
@@ -62,7 +62,7 @@ class HouseController extends Controller
             return $this->sendError($message,$exception->errors(),$exception->status);
         }
 
-        return $this->sendResponse($result,"Created successful");
+        return $this->sendResponse(new HouseResource($result),"Created successful");
 
     }
 

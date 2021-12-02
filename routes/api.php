@@ -31,10 +31,10 @@ Route::group(['prefix' => 'auth'], function () {
 Route::group(['middleware' => 'auth:api'], function () {
     Route::apiResource('houses', HouseController::class,['except' =>  ['index', 'show']]);
     Route::get('user/houses', [HouseController::class,'showForUser']);
-    Route::apiResource('orders', OrderController::class);
+    Route::apiResource('orders', OrderController::class,['except' => ['store']]);
     Route::apiResource('comments', CommentController::class,['except' => ['index', 'show' ,'store']]);
     Route::apiResource('features', FeatureController::class);
-    Route::apiResource('users', UserController::class,["except" => ["store"]]);
+    Route::post('users', [UserController::class,"update"]);
 });
 
 Route::get('houses', [HouseController::class,"index"]);
@@ -42,6 +42,7 @@ Route::get('houses/{house}', [HouseController::class,"show"]);
 
 Route::get('comments', [CommentController::class,"index"]);
 Route::post('comments', [CommentController::class,"store"]);
+Route::post('orders', [OrderController::class,"store"]);
 Route::get('comments/{comment}', [CommentController::class,"show"]);
 
 Route::get('houses/similar/{id}', [HouseController::class,'showSimilar']);
